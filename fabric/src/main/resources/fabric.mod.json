@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}",
+  "version": "${version}",
+  "name": "${name}",
+  "description": "CHANGE ME",
+  "authors": [ "Moonflower" ],
+  "contributors": [ "Jackson" ],
+  "contact": {
+    "homepage": "https://www.moonflower.gg",
+    "issues": "https://github.com/MoonflowerTeam/${repo}/issues",
+    "sources": "https://github.com/MoonflowerTeam/${repo}/"
+  },
+  "mixins": [
+    "${id}-common.mixins.json",
+    "${id}.mixins.json"
+  ],
+  "license": "GPLv3",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "gg.moonflower.carpenter.core.fabric.CarpenterFabric"
+    ],
+    "fabric-datagen": [
+      "gg.moonflower.carpenter.core.fabric.CarpenterFabricDataGenerator"
+    ]
+  },
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=1.18.2 <1.19",
+    "pollen": ">=1.0.0 <2.0"
+  }
+}
