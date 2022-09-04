@@ -1,6 +1,6 @@
 {
   "parent": "carpenter:block/template_chest_left_base",
   "textures": {
-    "texture": "carpenter:block/spruce_chest"
+    "texture": "carpenter:block/spruce_chest_double"
   }
 }
