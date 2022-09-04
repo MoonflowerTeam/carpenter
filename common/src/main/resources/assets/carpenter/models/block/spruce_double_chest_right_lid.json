@@ -6,7 +6,7 @@
 	},
 	"elements": [
 		{
-			"name": "lid_left",
+			"name": "lid_right",
 			"from": [1, 9, 1],
 			"to": [16, 14, 15],
 			"faces": {
@@ -18,7 +18,7 @@
 			}
 		},
 		{
-			"name": "knob_left",
+			"name": "knob_right",
 			"from": [14, 6, 0.9],
 			"to": [16, 10, 0.9],
 			"rotation": {"angle": 0, "axis": "y", "origin": [15, 10, 0.9]},

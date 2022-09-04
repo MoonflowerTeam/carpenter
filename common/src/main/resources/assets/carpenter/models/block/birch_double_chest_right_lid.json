@@ -6,7 +6,7 @@
 	},
 	"elements": [
 		{
-			"name": "lid_left",
+			"name": "lid_right",
 			"from": [1, 9, 1],
 			"to": [16, 14, 15],
 			"faces": {

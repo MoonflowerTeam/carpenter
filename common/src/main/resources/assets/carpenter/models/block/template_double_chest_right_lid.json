@@ -6,7 +6,7 @@
 	},
 	"elements": [
 		{
-			"name": "lid_left",
+			"name": "lid_right",
 			"from": [1, 9, 1],
 			"to": [16, 14, 15],
 			"faces": {
@@ -18,7 +18,7 @@
 			}
 		},
 		{
-			"name": "knob_left",
+			"name": "knob_right",
 			"from": [15, 7, 0],
 			"to": [16, 11, 1],
 			"faces": {
