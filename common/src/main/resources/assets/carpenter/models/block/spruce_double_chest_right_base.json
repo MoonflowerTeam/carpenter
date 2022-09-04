@@ -1,21 +1,6 @@
 {
-	"credit": "Made with Blockbench",
-	"texture_size": [128, 64],
-	"textures": {
-		"texture": "spruce_chest_double"
-	},
-	"elements": [
-		{
-			"name": "base_left",
-			"from": [1, 0, 1],
-			"to": [16, 10, 15],
-			"faces": {
-				"north": {"uv": [3.625, 8.25, 5.5, 10.75], "texture": "#texture"},
-				"south": {"uv": [11, 8.25, 9.125, 10.75], "texture": "#texture"},
-				"west": {"uv": [5.5, 8.25, 7.25, 10.75], "texture": "#texture"},
-				"up": {"uv": [5.5, 8.25, 3.625, 4.75], "texture": "#texture"},
-				"down": {"uv": [9.25, 4.75, 7.375, 8.25], "texture": "#texture"}
-			}
-		}
-	]
+  "parent": "carpenter:block/template_chest_right_base",
+  "textures": {
+    "texture": "carpenter:block/spruce_chest"
+  }
 }
