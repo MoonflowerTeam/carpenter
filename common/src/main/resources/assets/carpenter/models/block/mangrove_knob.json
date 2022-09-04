@@ -1,0 +1,20 @@
+{
+	"credit": "Made by Farcr",
+	"parent": "carpenter:block/template_chest_knob",
+	"texture_size": [64, 64],
+	"textures": {
+		"texture": "block/mangrove_chest"
+	},
+	"elements": [
+		{
+			"name": "knob",
+			"from": [5, 7, 1],
+			"to": [11, 9, 1],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9, 1]},
+			"faces": {
+				"north": {"uv": [0, 0, 1.5, 0.5], "texture": "#texture"},
+				"south": {"uv": [0, 0, 1.5, 0.5], "texture": "#texture"}
+			}
+		}
+	]
+}
