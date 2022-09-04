@@ -28,6 +28,10 @@ public class CarpenterBlockModelProvider extends PollinatedBlockModelGenerator {
     public static final ModelTemplate chestTemplateLeftLid = new ModelTemplate(Optional.of(Carpenter.carpenter("block/template_double_chest_left_lid")), Optional.empty(), TextureSlot.TEXTURE);
     public static final ModelTemplate chestTemplateRightLid = new ModelTemplate(Optional.of(Carpenter.carpenter("block/template_double_chest_right_lid")), Optional.empty(), TextureSlot.TEXTURE);
 
+    public static final ModelTemplate chestTemplateKnob = new ModelTemplate(Optional.of(Carpenter.carpenter("block/template_chest_knob")), Optional.empty(), TextureSlot.TEXTURE);
+
+    public static final ModelTemplate chestItemTemplate = new ModelTemplate(Optional.of(Carpenter.carpenter("item/template_chest")), Optional.empty(), TextureSlot.PARTICLE);
+
     public CarpenterBlockModelProvider(Consumer<BlockStateGenerator> blockStateOutput, BiConsumer<ResourceLocation, Supplier<JsonElement>> modelOutput, Consumer<Item> skippedAutoModelsOutput) {
         super(blockStateOutput, modelOutput, skippedAutoModelsOutput);
     }
@@ -41,8 +45,20 @@ public class CarpenterBlockModelProvider extends PollinatedBlockModelGenerator {
         this.createBookshelf(CarpenterBlocks.DARK_OAK_BOOKSHELF.get(), Blocks.DARK_OAK_PLANKS);
         this.createBookshelf(CarpenterBlocks.CRIMSON_BOOKSHELF.get(), Blocks.CRIMSON_PLANKS);
         this.createBookshelf(CarpenterBlocks.WARPED_BOOKSHELF.get(), Blocks.WARPED_PLANKS);
+
         this.createChestBase(CarpenterBlocks.OAK_CHEST.get(), Blocks.OAK_PLANKS);
         this.createChestLid(CarpenterBlocks.OAK_CHEST.get());
+        this.createDefaultChestKnob(CarpenterBlocks.OAK_CHEST.get());
+
+        this.createChestBase(CarpenterBlocks.DARK_OAK_CHEST.get(), Blocks.DARK_OAK_PLANKS);
+        this.createChestLid(CarpenterBlocks.DARK_OAK_CHEST.get());
+        this.createDefaultChestKnob(CarpenterBlocks.DARK_OAK_CHEST.get());
+
+        this.createChestBase(CarpenterBlocks.SPRUCE_CHEST.get(), Blocks.SPRUCE_PLANKS);
+        this.createChestLid(CarpenterBlocks.SPRUCE_CHEST.get());
+
+        this.createChestBase(CarpenterBlocks.BIRCH_CHEST.get(), Blocks.BIRCH_PLANKS);
+        this.createChestLid(CarpenterBlocks.BIRCH_CHEST.get());
     }
 
     private void createBookshelf(Block bookshelf, Block planks) {
@@ -57,6 +73,8 @@ public class CarpenterBlockModelProvider extends PollinatedBlockModelGenerator {
         new BlockEntityModelGenerator(ModelLocationUtils.getModelLocation(chest), particleBlock)
                 .create(chest);
 
+        final ResourceLocation itemModelLoc = chestItemTemplate.create(ModelLocationUtils.getModelLocation(chest.asItem()), TextureMapping.particle(particleBlock), getModelOutput());
+
         chestTemplate.createWithSuffix(chest, "_base", TextureMapping.defaultTexture(chest), getModelOutput());
         final ResourceLocation doubleMapping = TextureMapping.getBlockTexture(chest, "_double");
         chestTemplateLeft.createWithSuffix(chest, "_base_left", TextureMapping.defaultTexture(doubleMapping), getModelOutput());
@@ -69,5 +87,9 @@ public class CarpenterBlockModelProvider extends PollinatedBlockModelGenerator {
         final ResourceLocation doubleMapping = TextureMapping.getBlockTexture(chest, "_double");
         chestTemplateLeftLid.createWithSuffix(chest, "_lid_left", TextureMapping.defaultTexture(doubleMapping), getModelOutput());
         chestTemplateRightLid.createWithSuffix(chest, "_lid_right", TextureMapping.defaultTexture(doubleMapping), getModelOutput());
+    }
+
+    private void createDefaultChestKnob(CarpenterChestBlock chest) {
+        chestTemplateKnob.createWithSuffix(chest, "_knob", TextureMapping.defaultTexture(chest), getModelOutput());
     }
 }

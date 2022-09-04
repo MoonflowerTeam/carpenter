@@ -1,6 +1,6 @@
 {
   "parent": "carpenter:item/template_chest",
   "textures": {
-    "particle": "minecraft:block/oak_planks"
+    "particle": "minecraft:block/spruce_planks"
   }
 }
