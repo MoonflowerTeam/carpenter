@@ -8,4 +8,5 @@ import net.minecraft.world.level.block.Block;
 
 public class CarpenterTags {
     public static final TagKey<Block> BOOKSHELVES = TagRegistry.bindBlock(new ResourceLocation(Carpenter.MOD_ID, "bookshelves"));
+    public static final TagKey<Block> CHESTS = TagRegistry.bindBlock(new ResourceLocation(Carpenter.MOD_ID, "chests"));
 }

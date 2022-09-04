@@ -2,7 +2,7 @@
 	"credit": "Made by Farcr",
 	"texture_size": [64, 64],
 	"textures": {
-		"texture": "block/warped_chest"
+		"texture": "carpenter:block/warped_chest"
 	},
 	"elements": [
 		{

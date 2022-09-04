@@ -36,19 +36,22 @@ public class CarpenterBlocks {
     public static final Supplier<CarpenterChestBlock> DARK_OAK_CHEST = registerChest("dark_oak_chest");
     public static final Supplier<CarpenterChestBlock> BIRCH_CHEST = registerChest("birch_chest");
     public static final Supplier<CarpenterChestBlock> SPRUCE_CHEST = registerChest("spruce_chest");
+    public static final Supplier<CarpenterChestBlock> CRIMSON_CHEST = registerChest("crimson_chest");
+    public static final Supplier<CarpenterChestBlock> WARPED_CHEST = registerChest("warped_chest");
+    public static final Supplier<CarpenterChestBlock> ACACIA_CHEST = registerChest("acacia_chest");
 
     public static final Supplier<BlockEntityType<CarpenterChestBlockEntity>> CARPENTER_CHEST_BE = BLOCK_ENTITY_REGISTRY.register("carpenter_chest", () -> BlockEntityType.Builder.of(CarpenterChestBlockEntity::new, Registry.BLOCK.stream().filter(block -> block instanceof CarpenterChestBlock).toArray(CarpenterChestBlock[]::new)).build(null));
 
     private static Supplier<CarpenterChestBlock> registerChest(String chestType) {
         // register chest type alongside the block
         Supplier<CarpenterChestType> typeSupplier = () -> new CarpenterChestType(
-                Carpenter.carpenter("block/" + chestType + "_base"),
-                Carpenter.carpenter("block/" + chestType + "_base_left"),
-                Carpenter.carpenter("block/" + chestType + "_base_right"),
-                Carpenter.carpenter("block/" + chestType + "_lid"),
-                Carpenter.carpenter("block/" + chestType + "_lid_left"),
-                Carpenter.carpenter("block/" + chestType + "_lid_right"),
-                Carpenter.carpenter("block/" + chestType + "_knob")
+                Carpenter.carpenter("block/" + chestType + "/" + chestType + "_base"),
+                Carpenter.carpenter("block/" + chestType + "/" + chestType + "_base_left"),
+                Carpenter.carpenter("block/" + chestType + "/" + chestType + "_base_right"),
+                Carpenter.carpenter("block/" + chestType + "/" + chestType + "_lid"),
+                Carpenter.carpenter("block/" + chestType + "/" + chestType + "_lid_left"),
+                Carpenter.carpenter("block/" + chestType + "/" + chestType + "_lid_right"),
+                Carpenter.carpenter("block/" + chestType + "/" + chestType + "_knob")
         );
         CarpenterChests.CHEST_TYPE_REGISTRY.register(chestType, typeSupplier);
 

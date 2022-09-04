@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#carpenter:bookshelves"
+    "#carpenter:bookshelves",
+    "#carpenter:chests"
   ]
 }

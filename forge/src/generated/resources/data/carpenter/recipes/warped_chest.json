@@ -1,20 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "carpenter_bookshelf",
+  "group": "carpenter_chest",
   "pattern": [
     "###",
-    "XXX",
+    "# #",
     "###"
   ],
   "key": {
     "#": {
       "item": "minecraft:warped_planks"
-    },
-    "X": {
-      "item": "minecraft:book"
     }
   },
   "result": {
-    "item": "carpenter:warped_bookshelf"
+    "item": "carpenter:warped_chest"
   }
 }

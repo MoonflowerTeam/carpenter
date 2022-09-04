@@ -1,0 +1,6 @@
+{
+  "parent": "carpenter:block/template_chest_base",
+  "textures": {
+    "texture": "carpenter:block/crimson_chest"
+  }
+}

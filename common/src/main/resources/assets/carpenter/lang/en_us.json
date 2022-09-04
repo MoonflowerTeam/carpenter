@@ -1,9 +1,16 @@
 {
   "block.carpenter.acacia_bookshelf": "Acacia Bookshelf",
+  "block.carpenter.acacia_chest": "Acacia Chest",
   "block.carpenter.birch_bookshelf": "Birch Bookshelf",
+  "block.carpenter.birch_chest": "Birch Chest",
   "block.carpenter.crimson_bookshelf": "Crimson Bookshelf",
+  "block.carpenter.crimson_chest": "Crimson Chest",
   "block.carpenter.dark_oak_bookshelf": "Dark Oak Bookshelf",
+  "block.carpenter.dark_oak_chest": "Dark Oak Chest",
   "block.carpenter.jungle_bookshelf": "Jungle Bookshelf",
+  "block.carpenter.oak_chest": "Oak Chest",
   "block.carpenter.spruce_bookshelf": "Spruce Bookshelf",
-  "block.carpenter.warped_bookshelf": "Warped Bookshelf"
+  "block.carpenter.spruce_chest": "Spruce Chest",
+  "block.carpenter.warped_bookshelf": "Warped Bookshelf",
+  "block.carpenter.warped_chest": "Warped Chest"
 }

@@ -108,7 +108,7 @@ public class CarpenterChestBlockEntityRenderer implements BlockEntityRenderer<Ca
         if(connectionType == ChestType.LEFT)
             ms.translate(0.5, 0.0, 0.0);
 
-        if(connectionType != ChestType.RIGHT)
+        if(connectionType != ChestType.RIGHT && knob != modelManager.getMissingModel())
             blockRenderDispatcher.getModelRenderer().renderModel(ms.last(), buffer.getBuffer(Sheets.solidBlockSheet()), (BlockState)null, knob, 1.0F, 1.0F, 1.0F, packedLight, OverlayTexture.NO_OVERLAY);
         ms.popPose();
         ms.popPose();

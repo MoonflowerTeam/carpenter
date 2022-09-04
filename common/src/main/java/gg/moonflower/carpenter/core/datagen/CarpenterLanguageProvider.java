@@ -19,5 +19,14 @@ public class CarpenterLanguageProvider extends PollinatedLanguageProvider {
         this.addBlock(CarpenterBlocks.DARK_OAK_BOOKSHELF, "Dark Oak Bookshelf");
         this.addBlock(CarpenterBlocks.CRIMSON_BOOKSHELF, "Crimson Bookshelf");
         this.addBlock(CarpenterBlocks.WARPED_BOOKSHELF, "Warped Bookshelf");
+
+        this.addBlock(CarpenterBlocks.OAK_CHEST, "Oak Chest");
+        this.addBlock(CarpenterBlocks.DARK_OAK_CHEST, "Dark Oak Chest");
+        this.addBlock(CarpenterBlocks.BIRCH_CHEST, "Birch Chest");
+        this.addBlock(CarpenterBlocks.SPRUCE_CHEST, "Spruce Chest");
+        this.addBlock(CarpenterBlocks.CRIMSON_CHEST, "Crimson Chest");
+        this.addBlock(CarpenterBlocks.WARPED_CHEST, "Warped Chest");
+        this.addBlock(CarpenterBlocks.ACACIA_CHEST, "Acacia Chest");
+
     }
 }

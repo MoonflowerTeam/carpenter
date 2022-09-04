@@ -1,0 +1,6 @@
+{
+  "parent": "carpenter:block/template_double_chest_left_base",
+  "textures": {
+    "texture": "carpenter:block/crimson_chest_double"
+  }
+}

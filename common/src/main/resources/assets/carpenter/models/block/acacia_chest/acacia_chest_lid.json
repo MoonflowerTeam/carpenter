@@ -1,0 +1,6 @@
+{
+  "parent": "carpenter:block/template_chest_lid",
+  "textures": {
+    "texture": "carpenter:block/acacia_chest"
+  }
+}

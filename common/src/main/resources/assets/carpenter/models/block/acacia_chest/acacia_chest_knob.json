@@ -2,7 +2,7 @@
 	"credit": "Made by Farcr",
 	"texture_size": [64, 64],
 	"textures": {
-		"texture": "block/acacia_chest"
+		"texture": "carpenter:block/acacia_chest"
 	},
 	"elements": [
 		{

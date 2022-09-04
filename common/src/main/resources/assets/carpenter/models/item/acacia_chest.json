@@ -1,0 +1,6 @@
+{
+  "parent": "carpenter:item/template_chest",
+  "textures": {
+    "particle": "minecraft:block/acacia_planks"
+  }
+}

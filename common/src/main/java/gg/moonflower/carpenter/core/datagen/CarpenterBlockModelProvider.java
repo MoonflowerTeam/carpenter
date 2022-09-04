@@ -6,6 +6,7 @@ import gg.moonflower.carpenter.core.Carpenter;
 import gg.moonflower.carpenter.core.registry.CarpenterBlocks;
 import gg.moonflower.carpenter.core.registry.CarpenterChestType;
 import gg.moonflower.pollen.api.datagen.provider.model.PollinatedBlockModelGenerator;
+import net.minecraft.core.Registry;
 import net.minecraft.data.models.blockstates.BlockStateGenerator;
 import net.minecraft.data.models.model.*;
 import net.minecraft.resources.ResourceLocation;
@@ -59,6 +60,15 @@ public class CarpenterBlockModelProvider extends PollinatedBlockModelGenerator {
 
         this.createChestBase(CarpenterBlocks.BIRCH_CHEST.get(), Blocks.BIRCH_PLANKS);
         this.createChestLid(CarpenterBlocks.BIRCH_CHEST.get());
+
+        this.createChestBase(CarpenterBlocks.CRIMSON_CHEST.get(), Blocks.CRIMSON_PLANKS);
+        this.createChestLid(CarpenterBlocks.CRIMSON_CHEST.get());
+
+        this.createChestBase(CarpenterBlocks.WARPED_CHEST.get(), Blocks.WARPED_PLANKS);
+        this.createChestLid(CarpenterBlocks.WARPED_CHEST.get());
+
+        this.createChestBase(CarpenterBlocks.ACACIA_CHEST.get(), Blocks.ACACIA_PLANKS);
+        this.createChestLid(CarpenterBlocks.ACACIA_CHEST.get());
     }
 
     private void createBookshelf(Block bookshelf, Block planks) {
@@ -67,7 +77,16 @@ public class CarpenterBlockModelProvider extends PollinatedBlockModelGenerator {
         this.getBlockStateOutput().accept(createSimpleBlock(bookshelf, resourceLocation));
     }
 
-    private void createChestBase(CarpenterChestBlock chest, Block particleBlock) {
+
+    public ResourceLocation createWithSuffix(ModelTemplate template, Block modelBlock, String modelLocationSuffix, TextureMapping textureMapping, BiConsumer<ResourceLocation, Supplier<JsonElement>> modelOutput) {
+        ResourceLocation resourceLocation = Registry.BLOCK.getKey(modelBlock);
+        String var10002 = resourceLocation.getNamespace();
+        String var10003 = resourceLocation.getPath();
+
+        return template.create(new ResourceLocation(var10002, "block/" + var10003 + "/" + var10003 + modelLocationSuffix), textureMapping, modelOutput);
+    }
+
+    public void createChestBase(CarpenterChestBlock chest, Block particleBlock) {
         final CarpenterChestType carpenterChestType = chest.getType().get();
 
         new BlockEntityModelGenerator(ModelLocationUtils.getModelLocation(chest), particleBlock)
@@ -75,21 +94,21 @@ public class CarpenterBlockModelProvider extends PollinatedBlockModelGenerator {
 
         final ResourceLocation itemModelLoc = chestItemTemplate.create(ModelLocationUtils.getModelLocation(chest.asItem()), TextureMapping.particle(particleBlock), getModelOutput());
 
-        chestTemplate.createWithSuffix(chest, "_base", TextureMapping.defaultTexture(chest), getModelOutput());
+        createWithSuffix(chestTemplate, chest, "_base", TextureMapping.defaultTexture(chest), getModelOutput());
         final ResourceLocation doubleMapping = TextureMapping.getBlockTexture(chest, "_double");
-        chestTemplateLeft.createWithSuffix(chest, "_base_left", TextureMapping.defaultTexture(doubleMapping), getModelOutput());
-        chestTemplateRight.createWithSuffix(chest, "_base_right", TextureMapping.defaultTexture(doubleMapping), getModelOutput());
+        createWithSuffix(chestTemplateLeft, chest, "_base_left", TextureMapping.defaultTexture(doubleMapping), getModelOutput());
+        createWithSuffix(chestTemplateRight, chest, "_base_right", TextureMapping.defaultTexture(doubleMapping), getModelOutput());
     }
 
 
-    private void createChestLid(CarpenterChestBlock chest) {
-        chestTemplateLid.createWithSuffix(chest, "_lid", TextureMapping.defaultTexture(chest), getModelOutput());
+    public void createChestLid(CarpenterChestBlock chest) {
+        createWithSuffix(chestTemplateLid, chest, "_lid", TextureMapping.defaultTexture(chest), getModelOutput());
         final ResourceLocation doubleMapping = TextureMapping.getBlockTexture(chest, "_double");
-        chestTemplateLeftLid.createWithSuffix(chest, "_lid_left", TextureMapping.defaultTexture(doubleMapping), getModelOutput());
-        chestTemplateRightLid.createWithSuffix(chest, "_lid_right", TextureMapping.defaultTexture(doubleMapping), getModelOutput());
+        createWithSuffix(chestTemplateLeftLid, chest, "_lid_left", TextureMapping.defaultTexture(doubleMapping), getModelOutput());
+        createWithSuffix(chestTemplateRightLid, chest, "_lid_right", TextureMapping.defaultTexture(doubleMapping), getModelOutput());
     }
 
-    private void createDefaultChestKnob(CarpenterChestBlock chest) {
-        chestTemplateKnob.createWithSuffix(chest, "_knob", TextureMapping.defaultTexture(chest), getModelOutput());
+    public void createDefaultChestKnob(CarpenterChestBlock chest) {
+        createWithSuffix(chestTemplateKnob, chest, "_knob", TextureMapping.defaultTexture(chest), getModelOutput());
     }
 }

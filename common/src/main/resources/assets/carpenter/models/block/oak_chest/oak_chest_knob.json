@@ -1,6 +1,6 @@
 {
   "parent": "carpenter:block/template_chest_knob",
   "textures": {
-    "texture": "block/oak_chest"
+    "texture": "carpenter:block/oak_chest"
   }
 }
