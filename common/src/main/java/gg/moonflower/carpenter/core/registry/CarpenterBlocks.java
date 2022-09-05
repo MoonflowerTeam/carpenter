@@ -6,6 +6,7 @@ import gg.moonflower.carpenter.common.item.TabInsertBlockItem;
 import gg.moonflower.carpenter.core.Carpenter;
 import gg.moonflower.pollen.api.registry.PollinatedBlockRegistry;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
+import joptsimple.internal.OptionNameMap;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
@@ -39,6 +40,7 @@ public class CarpenterBlocks {
     public static final Supplier<CarpenterChestBlock> CRIMSON_CHEST = registerChest("crimson_chest");
     public static final Supplier<CarpenterChestBlock> WARPED_CHEST = registerChest("warped_chest");
     public static final Supplier<CarpenterChestBlock> ACACIA_CHEST = registerChest("acacia_chest");
+    public static final Supplier<CarpenterChestBlock> JUNGLE_CHEST = registerChest("jungle_chest");
 
     public static final Supplier<BlockEntityType<CarpenterChestBlockEntity>> CARPENTER_CHEST_BE = BLOCK_ENTITY_REGISTRY.register("carpenter_chest", () -> BlockEntityType.Builder.of(CarpenterChestBlockEntity::new, Registry.BLOCK.stream().filter(block -> block instanceof CarpenterChestBlock).toArray(CarpenterChestBlock[]::new)).build(null));
 

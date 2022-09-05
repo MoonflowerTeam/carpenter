@@ -36,6 +36,7 @@ public class CarpenterRecipeProvider extends PollinatedRecipeProvider {
         createChest(CarpenterBlocks.CRIMSON_CHEST.get(), Blocks.CRIMSON_PLANKS).save(consumer);
         createChest(CarpenterBlocks.WARPED_CHEST.get(), Blocks.WARPED_PLANKS).save(consumer);
         createChest(CarpenterBlocks.ACACIA_CHEST.get(), Blocks.ACACIA_PLANKS).save(consumer);
+        createChest(CarpenterBlocks.JUNGLE_CHEST.get(), Blocks.JUNGLE_PLANKS).save(consumer);
     }
 
     private static ShapedRecipeBuilder createBookshelf(Block bookshelf, Block planks) {

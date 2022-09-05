@@ -30,7 +30,8 @@ public class CarpenterBlockTagsProvider extends PollinatedBlockTagsProvider {
                 .add(CarpenterBlocks.ACACIA_CHEST.get())
                 .add(CarpenterBlocks.DARK_OAK_CHEST.get())
                 .add(CarpenterBlocks.CRIMSON_CHEST.get())
-                .add(CarpenterBlocks.WARPED_CHEST.get());
+                .add(CarpenterBlocks.WARPED_CHEST.get())
+                .add(CarpenterBlocks.JUNGLE_CHEST.get());
         this.tag(BlockTags.MINEABLE_WITH_AXE).addTag(CarpenterTags.CHESTS);
     }
 }

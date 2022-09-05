@@ -1,0 +1,6 @@
+{
+  "parent": "carpenter:block/template_double_chest_left_lid",
+  "textures": {
+    "texture": "carpenter:block/jungle_chest_double"
+  }
+}

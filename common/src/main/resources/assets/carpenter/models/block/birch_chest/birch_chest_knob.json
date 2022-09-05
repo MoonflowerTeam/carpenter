@@ -1,0 +1,10 @@
+{
+	"credit": "Made by Farcr",
+	"texture_size": [64, 64],
+	"textures": {
+		"texture": "carpenter:block/birch_chest"
+	},
+	"elements": [
+
+	]
+}

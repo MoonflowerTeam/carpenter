@@ -69,6 +69,9 @@ public class CarpenterBlockModelProvider extends PollinatedBlockModelGenerator {
 
         this.createChestBase(CarpenterBlocks.ACACIA_CHEST.get(), Blocks.ACACIA_PLANKS);
         this.createChestLid(CarpenterBlocks.ACACIA_CHEST.get());
+
+        this.createChestBase(CarpenterBlocks.JUNGLE_CHEST.get(), Blocks.JUNGLE_PLANKS);
+        this.createChestLid(CarpenterBlocks.JUNGLE_CHEST.get());
     }
 
     private void createBookshelf(Block bookshelf, Block planks) {
