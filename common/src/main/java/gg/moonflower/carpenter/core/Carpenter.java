@@ -13,6 +13,7 @@ import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.client.BlockEntityRendererRegistry;
 import gg.moonflower.pollen.api.registry.client.ItemRendererRegistry;
 import gg.moonflower.pollen.api.registry.client.ModelRegistry;
+import gg.moonflower.pollen.api.registry.content.FurnaceFuelRegistry;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
@@ -24,6 +25,7 @@ public class Carpenter {
             .clientInit(() -> ClientLoading::onClientInit)
             .clientPostInit(() -> ClientLoading::onClientPostInit)
             .commonInit(Carpenter::onCommonInit)
+            .commonPostInit(Carpenter::onCommonPostInit)
             .dataInit(Carpenter::onDataInit)
             .build();
 
@@ -38,6 +40,25 @@ public class Carpenter {
         CarpenterBlocks.BLOCK_ENTITY_REGISTRY.register(Carpenter.PLATFORM);
         CarpenterItems.REGISTRY.register(Carpenter.PLATFORM);
         CarpenterRecipes.REGISTRY.register(Carpenter.PLATFORM);
+    }
+
+    public static void onCommonPostInit(Platform.ModSetupContext ctx) {
+        FurnaceFuelRegistry.register(CarpenterBlocks.OAK_CHEST.get(), 300);
+        FurnaceFuelRegistry.register(CarpenterBlocks.SPRUCE_CHEST.get(), 300);
+        FurnaceFuelRegistry.register(CarpenterBlocks.BIRCH_CHEST.get(), 300);
+        FurnaceFuelRegistry.register(CarpenterBlocks.JUNGLE_CHEST.get(), 300);
+        FurnaceFuelRegistry.register(CarpenterBlocks.ACACIA_CHEST.get(), 300);
+        FurnaceFuelRegistry.register(CarpenterBlocks.DARK_OAK_CHEST.get(), 300);
+        FurnaceFuelRegistry.register(CarpenterBlocks.CRIMSON_CHEST.get(), 300);
+        FurnaceFuelRegistry.register(CarpenterBlocks.WARPED_CHEST.get(), 300);
+
+        FurnaceFuelRegistry.register(CarpenterBlocks.SPRUCE_BOOKSHELF.get(), 300);
+        FurnaceFuelRegistry.register(CarpenterBlocks.BIRCH_BOOKSHELF.get(), 300);
+        FurnaceFuelRegistry.register(CarpenterBlocks.JUNGLE_BOOKSHELF.get(), 300);
+        FurnaceFuelRegistry.register(CarpenterBlocks.ACACIA_BOOKSHELF.get(), 300);
+        FurnaceFuelRegistry.register(CarpenterBlocks.DARK_OAK_BOOKSHELF.get(), 300);
+        FurnaceFuelRegistry.register(CarpenterBlocks.CRIMSON_BOOKSHELF.get(), 300);
+        FurnaceFuelRegistry.register(CarpenterBlocks.WARPED_BOOKSHELF.get(), 300);
     }
 
     public static class ClientLoading {
