@@ -1,5 +1,6 @@
 package gg.moonflower.carpenter.core.registry;
 
+import gg.moonflower.carpenter.common.block.CarpenterBookshelfBlock;
 import gg.moonflower.carpenter.common.block.CarpenterChestBlock;
 import gg.moonflower.carpenter.common.block.CarpenterChestBlockEntity;
 import gg.moonflower.carpenter.common.block.CarpenterTrappedChestBlock;
@@ -80,6 +81,6 @@ public class CarpenterBlocks {
     }
 
     private static Supplier<Block> registerBookshelf(String wood) {
-        return REGISTRY.registerWithItem(wood + "_bookshelf", () -> new Block(BlockBehaviour.Properties.copy(Blocks.BOOKSHELF)), (block) -> new TabInsertBlockItem(block, Items.BOOKSHELF, new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
+        return REGISTRY.registerWithItem(wood + "_bookshelf", () -> new CarpenterBookshelfBlock(BlockBehaviour.Properties.copy(Blocks.BOOKSHELF)), (block) -> new TabInsertBlockItem(block, Items.BOOKSHELF, new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
     }
 }
