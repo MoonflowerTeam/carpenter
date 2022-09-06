@@ -1,6 +1,7 @@
 package gg.moonflower.carpenter.common.block;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Constants;
 import com.mojang.math.Vector3f;
 import gg.moonflower.carpenter.core.mixin.ModelManagerAccessor;
 import gg.moonflower.carpenter.core.registry.CarpenterBlocks;
@@ -20,10 +21,12 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.entity.LidBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.ChestType;
 
+import java.math.MathContext;
 import java.util.Map;
 
 public class CarpenterChestBlockEntityRenderer implements BlockEntityRenderer<CarpenterChestBlockEntity> {
@@ -85,15 +88,15 @@ public class CarpenterChestBlockEntityRenderer implements BlockEntityRenderer<Ca
 
         float g = 0.0f;
         if (level != null) {
-            AbstractChestBlock<?> abstractChestBlock = (AbstractChestBlock)block;
+            AbstractChestBlock<?> abstractChestBlock = (AbstractChestBlock<?>)block;
 
-            DoubleBlockCombiner.NeighborCombineResult neighborCombineResult;
+            DoubleBlockCombiner.NeighborCombineResult<? extends ChestBlockEntity> neighborCombineResult;
 
             neighborCombineResult = abstractChestBlock.combine(blockState, level, blockEntity.getBlockPos(), true);
-            g = ((Float2FloatFunction) neighborCombineResult.apply(ChestBlock.opennessCombiner((LidBlockEntity) blockEntity))).get(partialTick);
+            g = neighborCombineResult.apply(ChestBlock.opennessCombiner(blockEntity)).get(partialTick);
             g = 1.0F - g;
             g = 1.0F - g * g * g;
-            g = g * 1.5707964F;
+            g = g * (90F * Constants.DEG_TO_RAD);
         }
 
         // vanilla lid nonsense end
@@ -101,15 +104,15 @@ public class CarpenterChestBlockEntityRenderer implements BlockEntityRenderer<Ca
         ms.pushPose();
 
         ms.translate(0.0, 9 / 16.0, 14 / 16.0);
-        ms.mulPose(Vector3f.XP.rotation((float) (g)));
+        ms.mulPose(Vector3f.XP.rotation(g));
         ms.translate(0.0, -9 / 16.0, -14 / 16.0);
-        blockRenderDispatcher.getModelRenderer().renderModel(ms.last(), buffer.getBuffer(Sheets.solidBlockSheet()), (BlockState)null, lid, 1.0F, 1.0F, 1.0F, packedLight, OverlayTexture.NO_OVERLAY);
+        blockRenderDispatcher.getModelRenderer().renderModel(ms.last(), buffer.getBuffer(Sheets.solidBlockSheet()), null, lid, 1.0F, 1.0F, 1.0F, packedLight, OverlayTexture.NO_OVERLAY);
 
         if(connectionType == ChestType.LEFT)
             ms.translate(0.5, 0.0, 0.0);
 
         if(connectionType != ChestType.RIGHT && knob != modelManager.getMissingModel())
-            blockRenderDispatcher.getModelRenderer().renderModel(ms.last(), buffer.getBuffer(Sheets.solidBlockSheet()), (BlockState)null, knob, 1.0F, 1.0F, 1.0F, packedLight, OverlayTexture.NO_OVERLAY);
+            blockRenderDispatcher.getModelRenderer().renderModel(ms.last(), buffer.getBuffer(Sheets.cutoutBlockSheet()), null, knob, 1.0F, 1.0F, 1.0F, packedLight, OverlayTexture.NO_OVERLAY);
         ms.popPose();
         ms.popPose();
     }
