@@ -14,6 +14,7 @@ import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.client.BlockEntityRendererRegistry;
 import gg.moonflower.pollen.api.registry.client.ItemRendererRegistry;
 import gg.moonflower.pollen.api.registry.client.ModelRegistry;
+import gg.moonflower.pollen.api.registry.content.FlammabilityRegistry;
 import gg.moonflower.pollen.api.registry.content.FurnaceFuelRegistry;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import net.minecraft.core.Registry;
@@ -63,6 +64,12 @@ public class Carpenter {
         FurnaceFuelRegistry.register(CarpenterBlocks.JUNGLE_BOOKSHELF.get(), 300);
         FurnaceFuelRegistry.register(CarpenterBlocks.ACACIA_BOOKSHELF.get(), 300);
         FurnaceFuelRegistry.register(CarpenterBlocks.DARK_OAK_BOOKSHELF.get(), 300);
+
+        FlammabilityRegistry.register(CarpenterBlocks.SPRUCE_BOOKSHELF.get(), 30, 20);
+        FlammabilityRegistry.register(CarpenterBlocks.BIRCH_BOOKSHELF.get(), 30, 20);
+        FlammabilityRegistry.register(CarpenterBlocks.JUNGLE_BOOKSHELF.get(), 30, 20);
+        FlammabilityRegistry.register(CarpenterBlocks.ACACIA_BOOKSHELF.get(), 30, 20);
+        FlammabilityRegistry.register(CarpenterBlocks.DARK_OAK_BOOKSHELF.get(), 30, 20);
     }
 
     public static class ClientLoading {
