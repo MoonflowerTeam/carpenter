@@ -50,8 +50,6 @@ public class Carpenter {
         FurnaceFuelRegistry.register(CarpenterBlocks.JUNGLE_CHEST.get(), 300);
         FurnaceFuelRegistry.register(CarpenterBlocks.ACACIA_CHEST.get(), 300);
         FurnaceFuelRegistry.register(CarpenterBlocks.DARK_OAK_CHEST.get(), 300);
-        FurnaceFuelRegistry.register(CarpenterBlocks.CRIMSON_CHEST.get(), 300);
-        FurnaceFuelRegistry.register(CarpenterBlocks.WARPED_CHEST.get(), 300);
 
         FurnaceFuelRegistry.register(CarpenterBlocks.TRAPPED_OAK_CHEST.get(), 300);
         FurnaceFuelRegistry.register(CarpenterBlocks.TRAPPED_SPRUCE_CHEST.get(), 300);
@@ -59,16 +57,12 @@ public class Carpenter {
         FurnaceFuelRegistry.register(CarpenterBlocks.TRAPPED_JUNGLE_CHEST.get(), 300);
         FurnaceFuelRegistry.register(CarpenterBlocks.TRAPPED_ACACIA_CHEST.get(), 300);
         FurnaceFuelRegistry.register(CarpenterBlocks.TRAPPED_DARK_OAK_CHEST.get(), 300);
-        FurnaceFuelRegistry.register(CarpenterBlocks.TRAPPED_CRIMSON_CHEST.get(), 300);
-        FurnaceFuelRegistry.register(CarpenterBlocks.TRAPPED_WARPED_CHEST.get(), 300);
 
         FurnaceFuelRegistry.register(CarpenterBlocks.SPRUCE_BOOKSHELF.get(), 300);
         FurnaceFuelRegistry.register(CarpenterBlocks.BIRCH_BOOKSHELF.get(), 300);
         FurnaceFuelRegistry.register(CarpenterBlocks.JUNGLE_BOOKSHELF.get(), 300);
         FurnaceFuelRegistry.register(CarpenterBlocks.ACACIA_BOOKSHELF.get(), 300);
         FurnaceFuelRegistry.register(CarpenterBlocks.DARK_OAK_BOOKSHELF.get(), 300);
-        FurnaceFuelRegistry.register(CarpenterBlocks.CRIMSON_BOOKSHELF.get(), 300);
-        FurnaceFuelRegistry.register(CarpenterBlocks.WARPED_BOOKSHELF.get(), 300);
     }
 
     public static class ClientLoading {
