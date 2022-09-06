@@ -82,11 +82,12 @@ public class Carpenter {
                 ModelRegistry.registerSpecial(chestType.rightLid());
                 ModelRegistry.registerSpecial(chestType.knob());
             });
+
+            BlockEntityRendererRegistry.register(CarpenterBlocks.CARPENTER_CHEST_BE, CarpenterChestBlockEntityRenderer::new);
+            BlockEntityRendererRegistry.register(CarpenterBlocks.CARPENTER_TRAPPED_CHEST_BE, CarpenterTrappedChestBlockEntityRenderer::new);
         }
 
         public static void onClientPostInit(Platform.ModSetupContext modSetupContext) {
-            BlockEntityRendererRegistry.register(CarpenterBlocks.CARPENTER_CHEST_BE, CarpenterChestBlockEntityRenderer::new);
-            BlockEntityRendererRegistry.register(CarpenterBlocks.CARPENTER_TRAPPED_CHEST_BE, CarpenterTrappedChestBlockEntityRenderer::new);
             Registry.BLOCK.stream().filter((x) -> x instanceof CarpenterChestBlock).forEach(chest -> {
                 ItemRendererRegistry.registerRenderer(chest.asItem(), new CarpenterChestItemRenderer((CarpenterChestBlock) chest));
             });
