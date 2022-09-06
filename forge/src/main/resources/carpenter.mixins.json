@@ -1,9 +1,10 @@
 {
   "required": true,
-  "package": "gg.moonflower.pollen.core.mixin.forge",
+  "package": "gg.moonflower.carpenter.core.mixin.forge",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "mixins": [
+    "StructureTemplateMixin"
   ],
   "client": [
   ],

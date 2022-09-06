@@ -1,4 +1,4 @@
-package gg.moonflower.carpenter.core.mixin;
+package gg.moonflower.carpenter.core.mixin.forge;
 
 import gg.moonflower.carpenter.common.worldgen.StructureInjections;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -14,7 +14,7 @@ public class StructureTemplateMixin {
     @ModifyVariable(
             method = "placeInWorld(Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructurePlaceSettings;Ljava/util/Random;I)Z",
             at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate$StructureBlockInfo;nbt:Lnet/minecraft/nbt/CompoundTag;", ordinal = 0),
-            index = 23
+            index = 22
     )
     private BlockState blockStateModify(BlockState state, ServerLevelAccessor accessor) {
         return StructureInjections.getReplacement(accessor, state);
