@@ -5,5 +5,5 @@ import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import net.minecraft.resources.ResourceLocation;
 
 public class CarpenterChests {
-    public static final PollinatedRegistry<CarpenterChestType> CHEST_TYPE_REGISTRY = PollinatedRegistry.createSimple(new ResourceLocation(Carpenter.MOD_ID, "chest_type"));
+    public static final PollinatedRegistry<CarpenterChestType> REGISTRY = PollinatedRegistry.createSimple(new ResourceLocation(Carpenter.MOD_ID, "chest_type"));
 }

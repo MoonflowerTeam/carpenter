@@ -1,5 +1,5 @@
 {
-  "parent": "carpenter:item/template_chest",
+  "parent": "minecraft:item/chest",
   "textures": {
     "particle": "minecraft:block/crimson_planks"
   }

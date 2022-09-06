@@ -14,11 +14,9 @@ import gg.moonflower.pollen.api.registry.client.BlockEntityRendererRegistry;
 import gg.moonflower.pollen.api.registry.client.ItemRendererRegistry;
 import gg.moonflower.pollen.api.registry.client.ModelRegistry;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 
 public class Carpenter {
     public static final String MOD_ID = "carpenter";
@@ -35,15 +33,16 @@ public class Carpenter {
     }
 
     public static void onCommonInit() {
-        CarpenterChests.CHEST_TYPE_REGISTRY.register(Carpenter.PLATFORM);
-        CarpenterBlocks.BLOCK_ENTITY_REGISTRY.register(Carpenter.PLATFORM);
+        CarpenterChests.REGISTRY.register(Carpenter.PLATFORM);
         CarpenterBlocks.REGISTRY.register(Carpenter.PLATFORM);
+        CarpenterBlocks.BLOCK_ENTITY_REGISTRY.register(Carpenter.PLATFORM);
         CarpenterItems.REGISTRY.register(Carpenter.PLATFORM);
+        CarpenterRecipes.REGISTRY.register(Carpenter.PLATFORM);
     }
 
     public static class ClientLoading {
         public static void onClientInit() {
-            CarpenterChests.CHEST_TYPE_REGISTRY.stream().forEach((chestType) -> {
+            CarpenterChests.REGISTRY.stream().forEach((chestType) -> {
                 ModelRegistry.registerSpecial(chestType.body());
                 ModelRegistry.registerSpecial(chestType.leftBody());
                 ModelRegistry.registerSpecial(chestType.rightBody());

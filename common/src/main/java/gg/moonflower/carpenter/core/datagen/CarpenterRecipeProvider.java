@@ -1,11 +1,19 @@
 package gg.moonflower.carpenter.core.datagen;
 
 import gg.moonflower.carpenter.core.registry.CarpenterBlocks;
+import gg.moonflower.carpenter.core.registry.CarpenterRecipes;
 import gg.moonflower.pollen.api.datagen.provider.PollinatedRecipeProvider;
 import net.minecraft.advancements.CriterionTriggerInstance;
+import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.advancements.critereon.MinMaxBounds;
+import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.SpecialRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
@@ -20,43 +28,48 @@ public class CarpenterRecipeProvider extends PollinatedRecipeProvider {
 
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
-        createBookshelf(CarpenterBlocks.SPRUCE_BOOKSHELF.get(), Blocks.SPRUCE_PLANKS).save(consumer);
-        createBookshelf(CarpenterBlocks.BIRCH_BOOKSHELF.get(), Blocks.BIRCH_PLANKS).save(consumer);
-        createBookshelf(CarpenterBlocks.JUNGLE_BOOKSHELF.get(), Blocks.JUNGLE_PLANKS).save(consumer);
-        createBookshelf(CarpenterBlocks.ACACIA_BOOKSHELF.get(), Blocks.ACACIA_PLANKS).save(consumer);
-        createBookshelf(CarpenterBlocks.DARK_OAK_BOOKSHELF.get(), Blocks.DARK_OAK_PLANKS).save(consumer);
-        createBookshelf(CarpenterBlocks.CRIMSON_BOOKSHELF.get(), Blocks.CRIMSON_PLANKS).save(consumer);
-        createBookshelf(CarpenterBlocks.WARPED_BOOKSHELF.get(), Blocks.WARPED_PLANKS).save(consumer);
+        createBookshelf(Blocks.BOOKSHELF, Blocks.OAK_PLANKS, consumer);
+        createBookshelf(CarpenterBlocks.SPRUCE_BOOKSHELF.get(), Blocks.SPRUCE_PLANKS, consumer);
+        createBookshelf(CarpenterBlocks.BIRCH_BOOKSHELF.get(), Blocks.BIRCH_PLANKS, consumer);
+        createBookshelf(CarpenterBlocks.JUNGLE_BOOKSHELF.get(), Blocks.JUNGLE_PLANKS, consumer);
+        createBookshelf(CarpenterBlocks.ACACIA_BOOKSHELF.get(), Blocks.ACACIA_PLANKS, consumer);
+        createBookshelf(CarpenterBlocks.DARK_OAK_BOOKSHELF.get(), Blocks.DARK_OAK_PLANKS, consumer);
+        createBookshelf(CarpenterBlocks.CRIMSON_BOOKSHELF.get(), Blocks.CRIMSON_PLANKS, consumer);
+        createBookshelf(CarpenterBlocks.WARPED_BOOKSHELF.get(), Blocks.WARPED_PLANKS, consumer);
 
+        createChest(CarpenterBlocks.OAK_CHEST.get(), Blocks.OAK_PLANKS, consumer);
+        createChest(CarpenterBlocks.DARK_OAK_CHEST.get(), Blocks.DARK_OAK_PLANKS, consumer);
+        createChest(CarpenterBlocks.BIRCH_CHEST.get(), Blocks.BIRCH_PLANKS, consumer);
+        createChest(CarpenterBlocks.SPRUCE_CHEST.get(), Blocks.SPRUCE_PLANKS, consumer);
+        createChest(CarpenterBlocks.CRIMSON_CHEST.get(), Blocks.CRIMSON_PLANKS, consumer);
+        createChest(CarpenterBlocks.WARPED_CHEST.get(), Blocks.WARPED_PLANKS, consumer);
+        createChest(CarpenterBlocks.ACACIA_CHEST.get(), Blocks.ACACIA_PLANKS, consumer);
+        createChest(CarpenterBlocks.JUNGLE_CHEST.get(), Blocks.JUNGLE_PLANKS, consumer);
 
-        createChest(CarpenterBlocks.OAK_CHEST.get(), Blocks.OAK_PLANKS).save(consumer);
-        createChest(CarpenterBlocks.DARK_OAK_CHEST.get(), Blocks.DARK_OAK_PLANKS).save(consumer);
-        createChest(CarpenterBlocks.BIRCH_CHEST.get(), Blocks.BIRCH_PLANKS).save(consumer);
-        createChest(CarpenterBlocks.SPRUCE_CHEST.get(), Blocks.SPRUCE_PLANKS).save(consumer);
-        createChest(CarpenterBlocks.CRIMSON_CHEST.get(), Blocks.CRIMSON_PLANKS).save(consumer);
-        createChest(CarpenterBlocks.WARPED_CHEST.get(), Blocks.WARPED_PLANKS).save(consumer);
-        createChest(CarpenterBlocks.ACACIA_CHEST.get(), Blocks.ACACIA_PLANKS).save(consumer);
-        createChest(CarpenterBlocks.JUNGLE_CHEST.get(), Blocks.JUNGLE_PLANKS).save(consumer);
+        SpecialRecipeBuilder.special(CarpenterRecipes.LEGACY_CHEST.get())
+                .save(consumer, "chest");
     }
 
-    private static ShapedRecipeBuilder createBookshelf(Block bookshelf, Block planks) {
-        return ShapedRecipeBuilder.shaped(bookshelf)
-                .group("carpenter_bookshelf")
+    private static void createBookshelf(Block bookshelf, Block planks, Consumer<FinishedRecipe> saveConsumer) {
+        ShapedRecipeBuilder.shaped(bookshelf)
+                .group("bookshelves")
                 .define('#', planks)
                 .define('X', Items.BOOK)
                 .pattern("###")
                 .pattern("XXX")
                 .pattern("###")
-                .unlockedBy("has_book", has(Items.BOOK));
+                .unlockedBy("has_book", has(Items.BOOK))
+                .save(saveConsumer);
     }
 
-    private static ShapedRecipeBuilder createChest(Block chest, Block planks) {
-        return ShapedRecipeBuilder.shaped(chest)
-                .group("carpenter_chest")
+    private static void createChest(Block chest, Block planks, Consumer<FinishedRecipe> saveConsumer) {
+        ShapedRecipeBuilder.shaped(chest)
+                .group("chests")
                 .define('#', planks)
                 .pattern("###")
                 .pattern("# #")
                 .pattern("###")
-                .unlockedBy("has_item", has(planks));
+                .unlockedBy("has_lots_of_items", new InventoryChangeTrigger.TriggerInstance(EntityPredicate.Composite.ANY, MinMaxBounds.Ints.atLeast(10), MinMaxBounds.Ints.ANY, MinMaxBounds.Ints.ANY, new ItemPredicate[0]))
+                .save(saveConsumer);
     }
 }

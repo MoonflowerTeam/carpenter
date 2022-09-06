@@ -6,16 +6,12 @@ import gg.moonflower.carpenter.common.item.TabInsertBlockItem;
 import gg.moonflower.carpenter.core.Carpenter;
 import gg.moonflower.pollen.api.registry.PollinatedBlockRegistry;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
-import joptsimple.internal.OptionNameMap;
 import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.ChestBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
@@ -47,7 +43,7 @@ public class CarpenterBlocks {
 
     private static Supplier<CarpenterChestBlock> registerChest(String chestType) {
         // register chest type alongside the block
-        Supplier<CarpenterChestType> chestTypeSupplier = CarpenterChests.CHEST_TYPE_REGISTRY.register(chestType, () -> new CarpenterChestType(
+        Supplier<CarpenterChestType> chestTypeSupplier = CarpenterChests.REGISTRY.register(chestType, () -> new CarpenterChestType(
                 Carpenter.carpenter("block/" + chestType + "/" + chestType + "_base"),
                 Carpenter.carpenter("block/" + chestType + "/" + chestType + "_base_left"),
                 Carpenter.carpenter("block/" + chestType + "/" + chestType + "_base_right"),

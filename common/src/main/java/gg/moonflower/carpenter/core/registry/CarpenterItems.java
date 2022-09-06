@@ -7,5 +7,4 @@ import net.minecraft.world.item.Item;
 
 public class CarpenterItems {
     public static final PollinatedRegistry<Item> REGISTRY = PollinatedRegistry.create(Registry.ITEM, Carpenter.MOD_ID);
-
 }

@@ -22,16 +22,18 @@ public class CarpenterBlockTagsProvider extends PollinatedBlockTagsProvider {
                 .add(CarpenterBlocks.DARK_OAK_BOOKSHELF.get())
                 .add(CarpenterBlocks.CRIMSON_BOOKSHELF.get())
                 .add(CarpenterBlocks.WARPED_BOOKSHELF.get());
-        this.tag(BlockTags.MINEABLE_WITH_AXE).addTag(CarpenterTags.BOOKSHELVES);
-
         this.tag(CarpenterTags.CHESTS)
                 .add(CarpenterBlocks.SPRUCE_CHEST.get())
                 .add(CarpenterBlocks.BIRCH_CHEST.get())
+                .add(CarpenterBlocks.JUNGLE_CHEST.get())
                 .add(CarpenterBlocks.ACACIA_CHEST.get())
                 .add(CarpenterBlocks.DARK_OAK_CHEST.get())
                 .add(CarpenterBlocks.CRIMSON_CHEST.get())
-                .add(CarpenterBlocks.WARPED_CHEST.get())
-                .add(CarpenterBlocks.JUNGLE_CHEST.get());
-        this.tag(BlockTags.MINEABLE_WITH_AXE).addTag(CarpenterTags.CHESTS);
+                .add(CarpenterBlocks.WARPED_CHEST.get());
+
+        this.tag(BlockTags.MINEABLE_WITH_AXE)
+                .addTag(CarpenterTags.BOOKSHELVES)
+                .addTag(CarpenterTags.CHESTS);
+        // TODO: platform tags
     }
 }

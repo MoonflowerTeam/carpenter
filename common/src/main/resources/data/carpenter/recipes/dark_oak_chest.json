@@ -1,20 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "bookshelves",
+  "group": "chests",
   "pattern": [
     "###",
-    "XXX",
+    "# #",
     "###"
   ],
   "key": {
     "#": {
       "item": "minecraft:dark_oak_planks"
-    },
-    "X": {
-      "item": "minecraft:book"
     }
   },
   "result": {
-    "item": "carpenter:dark_oak_bookshelf"
+    "item": "carpenter:dark_oak_chest"
   }
 }
