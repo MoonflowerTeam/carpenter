@@ -55,6 +55,15 @@ public class CarpenterBlockModelProvider extends PollinatedBlockModelGenerator {
         this.createChest(CarpenterBlocks.ACACIA_CHEST.get(), Blocks.ACACIA_PLANKS);
         this.createChest(CarpenterBlocks.CRIMSON_CHEST.get(), Blocks.CRIMSON_PLANKS);
         this.createChest(CarpenterBlocks.WARPED_CHEST.get(), Blocks.WARPED_PLANKS);
+
+        this.createTrappedChest(CarpenterBlocks.TRAPPED_OAK_CHEST.get(), Blocks.SPRUCE_PLANKS);
+        this.createTrappedChest(CarpenterBlocks.TRAPPED_DARK_OAK_CHEST.get(), Blocks.SPRUCE_PLANKS);
+        this.createTrappedChest(CarpenterBlocks.TRAPPED_SPRUCE_CHEST.get(), Blocks.SPRUCE_PLANKS);
+        this.createTrappedChest(CarpenterBlocks.TRAPPED_BIRCH_CHEST.get(), Blocks.BIRCH_PLANKS);
+        this.createTrappedChest(CarpenterBlocks.TRAPPED_JUNGLE_CHEST.get(), Blocks.JUNGLE_PLANKS);
+        this.createTrappedChest(CarpenterBlocks.TRAPPED_ACACIA_CHEST.get(), Blocks.ACACIA_PLANKS);
+        this.createTrappedChest(CarpenterBlocks.TRAPPED_CRIMSON_CHEST.get(), Blocks.CRIMSON_PLANKS);
+        this.createTrappedChest(CarpenterBlocks.TRAPPED_WARPED_CHEST.get(), Blocks.WARPED_PLANKS);
     }
 
     private void createBookshelf(Block bookshelf, Block planks) {
@@ -71,6 +80,13 @@ public class CarpenterBlockModelProvider extends PollinatedBlockModelGenerator {
 
         createChestBase(chest);
         createChestLid(chest);
+    }
+
+    private void createTrappedChest(Block chest, Block planks) {
+        BlockEntityModelGenerator generator = new BlockEntityModelGenerator(ModelLocationUtils.getModelLocation(chest), planks);
+        generator.createWithoutBlockItem(chest);
+
+        CHEST_ITEM_TEMPLATE.create(ModelLocationUtils.getModelLocation(chest.asItem()), TextureMapping.particle(planks), this.getModelOutput());
     }
 
     public ResourceLocation createWithSuffix(ModelTemplate template, Block modelBlock, String modelLocationSuffix, TextureMapping textureMapping, BiConsumer<ResourceLocation, Supplier<JsonElement>> modelOutput) {

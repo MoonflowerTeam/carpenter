@@ -2,6 +2,7 @@ package gg.moonflower.carpenter.core;
 
 import gg.moonflower.carpenter.common.block.CarpenterChestBlock;
 import gg.moonflower.carpenter.common.block.CarpenterChestBlockEntityRenderer;
+import gg.moonflower.carpenter.common.block.CarpenterTrappedChestBlockEntityRenderer;
 import gg.moonflower.carpenter.common.item.CarpenterChestItemRenderer;
 import gg.moonflower.carpenter.core.datagen.CarpenterBlockModelProvider;
 import gg.moonflower.carpenter.core.datagen.CarpenterBlockTagsProvider;
@@ -52,6 +53,15 @@ public class Carpenter {
         FurnaceFuelRegistry.register(CarpenterBlocks.CRIMSON_CHEST.get(), 300);
         FurnaceFuelRegistry.register(CarpenterBlocks.WARPED_CHEST.get(), 300);
 
+        FurnaceFuelRegistry.register(CarpenterBlocks.TRAPPED_OAK_CHEST.get(), 300);
+        FurnaceFuelRegistry.register(CarpenterBlocks.TRAPPED_SPRUCE_CHEST.get(), 300);
+        FurnaceFuelRegistry.register(CarpenterBlocks.TRAPPED_BIRCH_CHEST.get(), 300);
+        FurnaceFuelRegistry.register(CarpenterBlocks.TRAPPED_JUNGLE_CHEST.get(), 300);
+        FurnaceFuelRegistry.register(CarpenterBlocks.TRAPPED_ACACIA_CHEST.get(), 300);
+        FurnaceFuelRegistry.register(CarpenterBlocks.TRAPPED_DARK_OAK_CHEST.get(), 300);
+        FurnaceFuelRegistry.register(CarpenterBlocks.TRAPPED_CRIMSON_CHEST.get(), 300);
+        FurnaceFuelRegistry.register(CarpenterBlocks.TRAPPED_WARPED_CHEST.get(), 300);
+
         FurnaceFuelRegistry.register(CarpenterBlocks.SPRUCE_BOOKSHELF.get(), 300);
         FurnaceFuelRegistry.register(CarpenterBlocks.BIRCH_BOOKSHELF.get(), 300);
         FurnaceFuelRegistry.register(CarpenterBlocks.JUNGLE_BOOKSHELF.get(), 300);
@@ -76,6 +86,7 @@ public class Carpenter {
 
         public static void onClientPostInit(Platform.ModSetupContext modSetupContext) {
             BlockEntityRendererRegistry.register(CarpenterBlocks.CARPENTER_CHEST_BE, CarpenterChestBlockEntityRenderer::new);
+            BlockEntityRendererRegistry.register(CarpenterBlocks.CARPENTER_TRAPPED_CHEST_BE, CarpenterTrappedChestBlockEntityRenderer::new);
             Registry.BLOCK.stream().filter((x) -> x instanceof CarpenterChestBlock).forEach(chest -> {
                 ItemRendererRegistry.registerRenderer(chest.asItem(), new CarpenterChestItemRenderer((CarpenterChestBlock) chest));
             });

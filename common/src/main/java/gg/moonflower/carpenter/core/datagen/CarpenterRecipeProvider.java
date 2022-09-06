@@ -12,10 +12,12 @@ import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SpecialRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
@@ -46,6 +48,15 @@ public class CarpenterRecipeProvider extends PollinatedRecipeProvider {
         createChest(CarpenterBlocks.ACACIA_CHEST.get(), Blocks.ACACIA_PLANKS, consumer);
         createChest(CarpenterBlocks.JUNGLE_CHEST.get(), Blocks.JUNGLE_PLANKS, consumer);
 
+        createTrappedChest(CarpenterBlocks.TRAPPED_OAK_CHEST.get(), CarpenterBlocks.OAK_CHEST.get(), consumer);
+        createTrappedChest(CarpenterBlocks.TRAPPED_DARK_OAK_CHEST.get(), CarpenterBlocks.DARK_OAK_CHEST.get(), consumer);
+        createTrappedChest(CarpenterBlocks.TRAPPED_BIRCH_CHEST.get(), CarpenterBlocks.BIRCH_CHEST.get(), consumer);
+        createTrappedChest(CarpenterBlocks.TRAPPED_SPRUCE_CHEST.get(), CarpenterBlocks.SPRUCE_CHEST.get(), consumer);
+        createTrappedChest(CarpenterBlocks.TRAPPED_CRIMSON_CHEST.get(), CarpenterBlocks.CRIMSON_CHEST.get(), consumer);
+        createTrappedChest(CarpenterBlocks.TRAPPED_WARPED_CHEST.get(), CarpenterBlocks.WARPED_CHEST.get(), consumer);
+        createTrappedChest(CarpenterBlocks.TRAPPED_ACACIA_CHEST.get(), CarpenterBlocks.ACACIA_CHEST.get(), consumer);
+        createTrappedChest(CarpenterBlocks.TRAPPED_JUNGLE_CHEST.get(), CarpenterBlocks.JUNGLE_CHEST.get(), consumer);
+
         SpecialRecipeBuilder.special(CarpenterRecipes.LEGACY_CHEST.get())
                 .save(consumer, "chest");
     }
@@ -70,6 +81,15 @@ public class CarpenterRecipeProvider extends PollinatedRecipeProvider {
                 .pattern("# #")
                 .pattern("###")
                 .unlockedBy("has_lots_of_items", new InventoryChangeTrigger.TriggerInstance(EntityPredicate.Composite.ANY, MinMaxBounds.Ints.atLeast(10), MinMaxBounds.Ints.ANY, MinMaxBounds.Ints.ANY, new ItemPredicate[0]))
+                .save(saveConsumer);
+    }
+
+    private static void createTrappedChest(Block chest, Block from, Consumer<FinishedRecipe> saveConsumer) {
+        ShapelessRecipeBuilder.shapeless(chest)
+                .group("trapped_chests")
+                .requires(from)
+                .requires(Blocks.TRIPWIRE_HOOK)
+                .unlockedBy("has_tripwire_hook", has(Blocks.TRIPWIRE_HOOK))
                 .save(saveConsumer);
     }
 }

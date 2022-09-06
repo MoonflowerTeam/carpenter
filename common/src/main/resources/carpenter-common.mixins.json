@@ -6,7 +6,9 @@
   "mixins": [
     "EnchantmentTableBlockMixin",
     "StructurePieceMixin",
-    "StructurePieceAccessor"
+    "StructurePieceAccessor",
+    "StructureStartMixin",
+    "StructureTemplateMixin"
   ],
   "client": [
     "ModelManagerAccessor"

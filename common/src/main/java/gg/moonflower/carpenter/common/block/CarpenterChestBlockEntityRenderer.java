@@ -29,7 +29,7 @@ import net.minecraft.world.level.block.state.properties.ChestType;
 import java.math.MathContext;
 import java.util.Map;
 
-public class CarpenterChestBlockEntityRenderer implements BlockEntityRenderer<CarpenterChestBlockEntity> {
+public class CarpenterChestBlockEntityRenderer<T extends CarpenterChestBlockEntity> implements BlockEntityRenderer<T> {
 
     private final BlockEntityRendererProvider.Context context;
 
