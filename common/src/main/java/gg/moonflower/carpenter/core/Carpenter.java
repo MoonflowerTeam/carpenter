@@ -5,11 +5,14 @@ import gg.moonflower.carpenter.client.render.block.entity.CarpenterChestBlockEnt
 import gg.moonflower.carpenter.common.item.CarpenterChestItemRenderer;
 import gg.moonflower.carpenter.core.datagen.CarpenterBlockModelProvider;
 import gg.moonflower.carpenter.core.datagen.CarpenterBlockTagsProvider;
+import gg.moonflower.carpenter.core.datagen.CarpenterItemTagsProvider;
 import gg.moonflower.carpenter.core.datagen.CarpenterLanguageProvider;
+import gg.moonflower.carpenter.core.datagen.CarpenterBlockLootGenerator;
 import gg.moonflower.carpenter.core.datagen.CarpenterRecipeProvider;
 import gg.moonflower.carpenter.core.registry.*;
 import gg.moonflower.pollen.api.config.ConfigManager;
 import gg.moonflower.pollen.api.config.PollinatedConfigType;
+import gg.moonflower.pollen.api.datagen.provider.loot_table.PollinatedLootTableProvider;
 import gg.moonflower.pollen.api.datagen.provider.model.PollinatedModelProvider;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.client.BlockEntityRendererRegistry;
@@ -21,6 +24,7 @@ import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 
 public class Carpenter {
     public static final String MOD_ID = "carpenter";
@@ -105,7 +109,13 @@ public class Carpenter {
         modelProvider.addGenerator(CarpenterBlockModelProvider::new);
         generator.addProvider(modelProvider);
 
-        generator.addProvider(new CarpenterBlockTagsProvider(generator, container));
+        PollinatedLootTableProvider lootProvider = new PollinatedLootTableProvider(generator);
+        lootProvider.add(LootContextParamSets.BLOCK, new CarpenterBlockLootGenerator(container));
+        generator.addProvider(lootProvider);
+
+        CarpenterBlockTagsProvider blockTagsProvider = new CarpenterBlockTagsProvider(generator, container);
+        generator.addProvider(blockTagsProvider);
+        generator.addProvider(new CarpenterItemTagsProvider(generator, container, blockTagsProvider));
         generator.addProvider(new CarpenterLanguageProvider(generator, container));
         generator.addProvider(new CarpenterRecipeProvider(generator));
     }
