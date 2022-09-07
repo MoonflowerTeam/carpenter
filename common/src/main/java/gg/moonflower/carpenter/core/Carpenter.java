@@ -1,14 +1,15 @@
 package gg.moonflower.carpenter.core;
 
 import gg.moonflower.carpenter.common.block.CarpenterChestBlock;
-import gg.moonflower.carpenter.common.block.CarpenterChestBlockEntityRenderer;
-import gg.moonflower.carpenter.common.block.CarpenterTrappedChestBlockEntityRenderer;
+import gg.moonflower.carpenter.client.render.block.entity.CarpenterChestBlockEntityRenderer;
 import gg.moonflower.carpenter.common.item.CarpenterChestItemRenderer;
 import gg.moonflower.carpenter.core.datagen.CarpenterBlockModelProvider;
 import gg.moonflower.carpenter.core.datagen.CarpenterBlockTagsProvider;
 import gg.moonflower.carpenter.core.datagen.CarpenterLanguageProvider;
 import gg.moonflower.carpenter.core.datagen.CarpenterRecipeProvider;
 import gg.moonflower.carpenter.core.registry.*;
+import gg.moonflower.pollen.api.config.ConfigManager;
+import gg.moonflower.pollen.api.config.PollinatedConfigType;
 import gg.moonflower.pollen.api.datagen.provider.model.PollinatedModelProvider;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.client.BlockEntityRendererRegistry;
@@ -31,6 +32,7 @@ public class Carpenter {
             .dataInit(Carpenter::onDataInit)
             .build();
 
+    public static final CarpenterConfig CONFIG = ConfigManager.register(Carpenter.MOD_ID, PollinatedConfigType.COMMON, CarpenterConfig::new);
 
     public static ResourceLocation carpenter(String path) {
         return new ResourceLocation(Carpenter.MOD_ID, path);
@@ -85,7 +87,7 @@ public class Carpenter {
             });
 
             BlockEntityRendererRegistry.register(CarpenterBlocks.CARPENTER_CHEST_BE, CarpenterChestBlockEntityRenderer::new);
-            BlockEntityRendererRegistry.register(CarpenterBlocks.CARPENTER_TRAPPED_CHEST_BE, CarpenterTrappedChestBlockEntityRenderer::new);
+            BlockEntityRendererRegistry.register(CarpenterBlocks.CARPENTER_TRAPPED_CHEST_BE, CarpenterChestBlockEntityRenderer::new);
         }
 
         public static void onClientPostInit(Platform.ModSetupContext modSetupContext) {

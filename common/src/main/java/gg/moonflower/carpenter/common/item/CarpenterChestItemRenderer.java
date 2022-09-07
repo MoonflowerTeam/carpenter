@@ -2,7 +2,7 @@ package gg.moonflower.carpenter.common.item;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import gg.moonflower.carpenter.common.block.CarpenterChestBlock;
-import gg.moonflower.carpenter.common.block.CarpenterChestBlockEntity;
+import gg.moonflower.carpenter.common.block.entity.CarpenterChestBlockEntity;
 import gg.moonflower.pollen.api.client.render.DynamicItemRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;

@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
 
-@Mixin(value = StructureStart.class, priority = 1100)
+@Mixin(value = StructureStart.class)
 public class StructureStartMixin {
 
     @Shadow @Final private ConfiguredStructureFeature<?, ?> feature;
@@ -31,12 +31,12 @@ public class StructureStartMixin {
     @Shadow @Final private PiecesContainer pieceContainer;
 
     @Inject(method = "placeInChunk", at = @At("HEAD"))
-    public void pushStructure(WorldGenLevel level, StructureFeatureManager structureManager, ChunkGenerator chunkGenerator, Random random, BoundingBox box, ChunkPos chunkPos, CallbackInfo ci) {
-        StructureInjections.pushStructure(feature, pieceContainer);
+    private void pushStructure(WorldGenLevel level, StructureFeatureManager structureManager, ChunkGenerator chunkGenerator, Random random, BoundingBox box, ChunkPos chunkPos, CallbackInfo ci) {
+        StructureInjections.pushStructure(this.feature, this.pieceContainer);
     }
 
     @Inject(method = "placeInChunk", at = @At("RETURN"))
-    public void popStructure(WorldGenLevel level, StructureFeatureManager structureManager, ChunkGenerator chunkGenerator, Random random, BoundingBox box, ChunkPos chunkPos, CallbackInfo ci) {
+    private void popStructure(WorldGenLevel level, StructureFeatureManager structureManager, ChunkGenerator chunkGenerator, Random random, BoundingBox box, ChunkPos chunkPos, CallbackInfo ci) {
         StructureInjections.popStructure();
     }
 

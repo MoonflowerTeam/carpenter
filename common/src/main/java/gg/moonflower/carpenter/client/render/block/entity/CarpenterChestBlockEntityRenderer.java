@@ -1,12 +1,12 @@
-package gg.moonflower.carpenter.common.block;
+package gg.moonflower.carpenter.client.render.block.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Constants;
 import com.mojang.math.Vector3f;
+import gg.moonflower.carpenter.common.block.CarpenterChestBlock;
+import gg.moonflower.carpenter.common.block.entity.CarpenterChestBlockEntity;
 import gg.moonflower.carpenter.core.mixin.ModelManagerAccessor;
-import gg.moonflower.carpenter.core.registry.CarpenterBlocks;
 import gg.moonflower.carpenter.core.registry.CarpenterChestType;
-import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.Sheets;
@@ -16,17 +16,14 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelManager;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
-import net.minecraft.world.level.block.entity.LidBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.ChestType;
 
-import java.math.MathContext;
 import java.util.Map;
 
 public class CarpenterChestBlockEntityRenderer<T extends CarpenterChestBlockEntity> implements BlockEntityRenderer<T> {

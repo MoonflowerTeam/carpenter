@@ -9,6 +9,7 @@ architectury {
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modImplementation("gg.moonflower:pollen:${rootProject.pollen_version}")
+    annotationProcessor("gg.moonflower:pollen:${rootProject.pollen_version}")
 }
 
 processResources {

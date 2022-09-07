@@ -1,5 +1,6 @@
 package gg.moonflower.carpenter.common.block;
 
+import gg.moonflower.carpenter.common.block.entity.CarpenterTrappedChestBlockEntity;
 import gg.moonflower.carpenter.core.registry.CarpenterBlocks;
 import gg.moonflower.carpenter.core.registry.CarpenterChestType;
 import net.minecraft.core.BlockPos;
@@ -10,8 +11,6 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.ChestBlock;
-import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;

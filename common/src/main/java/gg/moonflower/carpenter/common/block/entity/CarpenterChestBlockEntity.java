@@ -1,4 +1,4 @@
-package gg.moonflower.carpenter.common.block;
+package gg.moonflower.carpenter.common.block.entity;
 
 import gg.moonflower.carpenter.core.registry.CarpenterBlocks;
 import net.minecraft.core.BlockPos;

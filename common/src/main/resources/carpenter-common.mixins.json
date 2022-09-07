@@ -5,8 +5,8 @@
   "minVersion": "0.8",
   "mixins": [
     "StructurePieceMixin",
-    "StructurePieceAccessor",
-    "StructureStartMixin"
+    "StructureStartMixin",
+    "StructureTemplateMixin"
   ],
   "client": [
     "ModelManagerAccessor"

@@ -1,20 +1,20 @@
 package gg.moonflower.carpenter.core.mixin.fabric;
 
 import gg.moonflower.carpenter.core.registry.CarpenterTags;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
+import gg.moonflower.pollen.mixinextras.injector.wrapoperation.Operation;
+import gg.moonflower.pollen.mixinextras.injector.wrapoperation.WrapOperation;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EnchantmentTableBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(EnchantmentTableBlock.class)
+@Mixin(value = EnchantmentTableBlock.class, priority = 1100)
 public class EnchantmentTableBlockMixin {
 
-    @Inject(method = "isValidBookShelf", at = @At("HEAD"), cancellable = true)
-    private static void allowCarpenterBookshelves(Level level, BlockPos blockPos, BlockPos blockPos2, CallbackInfoReturnable<Boolean> cir) {
-        if (level.getBlockState(blockPos.offset(blockPos2)).is(CarpenterTags.BOOKSHELVES) && level.isEmptyBlock(blockPos.offset(blockPos2.getX() / 2, blockPos2.getY(), blockPos2.getZ() / 2)))
-            cir.setReturnValue(true);
+    @WrapOperation(method = "isValidBookShelf", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z"))
+    private static boolean allowCarpenterBookshelves(BlockState instance, Block block, Operation<Boolean> original) {
+        return original.call(instance, block) || instance.is(CarpenterTags.BOOKSHELVES);
     }
 }

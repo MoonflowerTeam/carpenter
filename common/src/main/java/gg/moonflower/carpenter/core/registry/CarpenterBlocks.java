@@ -2,9 +2,9 @@ package gg.moonflower.carpenter.core.registry;
 
 import gg.moonflower.carpenter.common.block.CarpenterBookshelfBlock;
 import gg.moonflower.carpenter.common.block.CarpenterChestBlock;
-import gg.moonflower.carpenter.common.block.CarpenterChestBlockEntity;
+import gg.moonflower.carpenter.common.block.entity.CarpenterChestBlockEntity;
 import gg.moonflower.carpenter.common.block.CarpenterTrappedChestBlock;
-import gg.moonflower.carpenter.common.block.CarpenterTrappedChestBlockEntity;
+import gg.moonflower.carpenter.common.block.entity.CarpenterTrappedChestBlockEntity;
 import gg.moonflower.carpenter.common.item.TabInsertBlockItem;
 import gg.moonflower.carpenter.core.Carpenter;
 import gg.moonflower.pollen.api.registry.PollinatedBlockRegistry;
@@ -33,34 +33,34 @@ public class CarpenterBlocks {
     public static final Supplier<Block> BIRCH_BOOKSHELF = registerBookshelf("birch");
     public static final Supplier<Block> SPRUCE_BOOKSHELF = registerBookshelf("spruce");
 
-    public static final Supplier<CarpenterChestBlock> WARPED_CHEST = registerChest("warped_chest");
-    public static final Supplier<CarpenterChestBlock> TRAPPED_WARPED_CHEST = registerTrappedChest("warped_chest");
-    public static final Supplier<CarpenterChestBlock> CRIMSON_CHEST = registerChest("crimson_chest");
-    public static final Supplier<CarpenterChestBlock> TRAPPED_CRIMSON_CHEST = registerTrappedChest("crimson_chest");
-    public static final Supplier<CarpenterChestBlock> DARK_OAK_CHEST = registerChest("dark_oak_chest");
-    public static final Supplier<CarpenterChestBlock> TRAPPED_DARK_OAK_CHEST = registerTrappedChest("dark_oak_chest");
-    public static final Supplier<CarpenterChestBlock> ACACIA_CHEST = registerChest("acacia_chest");
-    public static final Supplier<CarpenterChestBlock> TRAPPED_ACACIA_CHEST = registerTrappedChest("acacia_chest");
-    public static final Supplier<CarpenterChestBlock> JUNGLE_CHEST = registerChest("jungle_chest");
-    public static final Supplier<CarpenterChestBlock> TRAPPED_JUNGLE_CHEST = registerTrappedChest("jungle_chest");
-    public static final Supplier<CarpenterChestBlock> BIRCH_CHEST = registerChest("birch_chest");
-    public static final Supplier<CarpenterChestBlock> TRAPPED_BIRCH_CHEST = registerTrappedChest("birch_chest");
-    public static final Supplier<CarpenterChestBlock> SPRUCE_CHEST = registerChest("spruce_chest");
-    public static final Supplier<CarpenterChestBlock> TRAPPED_SPRUCE_CHEST = registerTrappedChest("spruce_chest");
-    public static final Supplier<CarpenterChestBlock> OAK_CHEST = registerChest("oak_chest");
-    public static final Supplier<CarpenterChestBlock> TRAPPED_OAK_CHEST = registerTrappedChest("oak_chest");
+    public static final Supplier<Block> WARPED_CHEST = registerChest("warped_chest");
+    public static final Supplier<Block> TRAPPED_WARPED_CHEST = registerTrappedChest("warped_chest");
+    public static final Supplier<Block> CRIMSON_CHEST = registerChest("crimson_chest");
+    public static final Supplier<Block> TRAPPED_CRIMSON_CHEST = registerTrappedChest("crimson_chest");
+    public static final Supplier<Block> DARK_OAK_CHEST = registerChest("dark_oak_chest");
+    public static final Supplier<Block> TRAPPED_DARK_OAK_CHEST = registerTrappedChest("dark_oak_chest");
+    public static final Supplier<Block> ACACIA_CHEST = registerChest("acacia_chest");
+    public static final Supplier<Block> TRAPPED_ACACIA_CHEST = registerTrappedChest("acacia_chest");
+    public static final Supplier<Block> JUNGLE_CHEST = registerChest("jungle_chest");
+    public static final Supplier<Block> TRAPPED_JUNGLE_CHEST = registerTrappedChest("jungle_chest");
+    public static final Supplier<Block> BIRCH_CHEST = registerChest("birch_chest");
+    public static final Supplier<Block> TRAPPED_BIRCH_CHEST = registerTrappedChest("birch_chest");
+    public static final Supplier<Block> SPRUCE_CHEST = registerChest("spruce_chest");
+    public static final Supplier<Block> TRAPPED_SPRUCE_CHEST = registerTrappedChest("spruce_chest");
+    public static final Supplier<Block> OAK_CHEST = registerChest("oak_chest");
+    public static final Supplier<Block> TRAPPED_OAK_CHEST = registerTrappedChest("oak_chest");
 
     public static final Supplier<BlockEntityType<CarpenterChestBlockEntity>> CARPENTER_CHEST_BE = BLOCK_ENTITY_REGISTRY.register("carpenter_chest", () -> BlockEntityType.Builder.of(CarpenterChestBlockEntity::new, Registry.BLOCK.stream().filter(block -> block instanceof CarpenterChestBlock).toArray(CarpenterChestBlock[]::new)).build(null));
     public static final Supplier<BlockEntityType<CarpenterTrappedChestBlockEntity>> CARPENTER_TRAPPED_CHEST_BE = BLOCK_ENTITY_REGISTRY.register("carpenter_trapped_chest", () -> BlockEntityType.Builder.of(CarpenterTrappedChestBlockEntity::new, Registry.BLOCK.stream().filter(block -> block instanceof CarpenterChestBlock).toArray(CarpenterChestBlock[]::new)).build(null));
 
-    private static Supplier<CarpenterChestBlock> registerChest(String chestType) {
+    private static Supplier<Block> registerChest(String chestType) {
         // register chest type alongside the block
         Supplier<CarpenterChestType> chestTypeSupplier = buildChestType(chestType);
 
         return REGISTRY.registerWithItem(chestType, () -> new CarpenterChestBlock(chestTypeSupplier, BlockBehaviour.Properties.copy(Blocks.CHEST), () -> CarpenterBlocks.CARPENTER_CHEST_BE.get()), (block) -> new TabInsertBlockItem(block, Items.CHEST, new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
     }
 
-    private static Supplier<CarpenterChestBlock> registerTrappedChest(String chestType) {
+    private static Supplier<Block> registerTrappedChest(String chestType) {
         // register chest type alongside the block
         Supplier<CarpenterChestType> chestTypeSupplier = () -> CarpenterChests.REGISTRY.get(Carpenter.carpenter(chestType));
 

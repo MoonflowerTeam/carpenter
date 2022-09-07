@@ -7,15 +7,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.levelgen.feature.ConfiguredStructureFeature;
-import net.minecraft.world.level.levelgen.feature.ShipwreckFeature;
 import net.minecraft.world.level.levelgen.structure.pieces.PiecesContainer;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -25,54 +23,67 @@ public class StructureInjections {
     private static PiecesContainer pieceContainer;
 
     // TODO: These need to be configurable with a datapack reload listener. It's possible for mods to just add to this hashmap normally for compat, but it should be easier
-    public static HashMap<ResourceLocation, List<StructureBlockReplacementEntry>> replacementMappings = new HashMap<>() {{
-        put(new ResourceLocation("village_plains"), ImmutableList.of(new StructureBlockReplacementEntry(Blocks.CHEST, () -> CarpenterBlocks.OAK_CHEST.get().defaultBlockState())));
-        put(new ResourceLocation("village_desert"), ImmutableList.of(new StructureBlockReplacementEntry(Blocks.BOOKSHELF, () -> CarpenterBlocks.JUNGLE_BOOKSHELF.get().defaultBlockState()), new StructureBlockReplacementEntry(Blocks.CHEST, () -> CarpenterBlocks.JUNGLE_CHEST.get().defaultBlockState())));
-        put(new ResourceLocation("village_savanna"), ImmutableList.of(new StructureBlockReplacementEntry(Blocks.BOOKSHELF, () -> CarpenterBlocks.ACACIA_BOOKSHELF.get().defaultBlockState()), new StructureBlockReplacementEntry(Blocks.CHEST, () -> CarpenterBlocks.ACACIA_CHEST.get().defaultBlockState())));
-        put(new ResourceLocation("village_snowy"), ImmutableList.of(new StructureBlockReplacementEntry(Blocks.BOOKSHELF, () -> CarpenterBlocks.SPRUCE_BOOKSHELF.get().defaultBlockState()), new StructureBlockReplacementEntry(Blocks.CHEST, () -> CarpenterBlocks.SPRUCE_CHEST.get().defaultBlockState())));
-        put(new ResourceLocation("village_taiga"), ImmutableList.of(new StructureBlockReplacementEntry(Blocks.BOOKSHELF, () -> CarpenterBlocks.SPRUCE_BOOKSHELF.get().defaultBlockState()), new StructureBlockReplacementEntry(Blocks.CHEST, () -> CarpenterBlocks.SPRUCE_CHEST.get().defaultBlockState())));
+    public static final Map<ResourceLocation, List<StructureBlockReplacementEntry>> REPLACEMENTS = new HashMap<>() {{
+        put(new ResourceLocation("village_plains"), ImmutableList.of(
+                new StructureBlockReplacementEntry(Blocks.CHEST, CarpenterBlocks.OAK_CHEST)
+        ));
+        put(new ResourceLocation("village_desert"), ImmutableList.of(
+                new StructureBlockReplacementEntry(Blocks.BOOKSHELF, CarpenterBlocks.JUNGLE_BOOKSHELF),
+                new StructureBlockReplacementEntry(Blocks.CHEST, CarpenterBlocks.JUNGLE_CHEST)
+        ));
+        put(new ResourceLocation("village_savanna"), ImmutableList.of(
+                new StructureBlockReplacementEntry(Blocks.BOOKSHELF, CarpenterBlocks.ACACIA_BOOKSHELF),
+                new StructureBlockReplacementEntry(Blocks.CHEST, CarpenterBlocks.ACACIA_CHEST)
+        ));
+        put(new ResourceLocation("village_snowy"), ImmutableList.of(
+                new StructureBlockReplacementEntry(Blocks.BOOKSHELF, CarpenterBlocks.SPRUCE_BOOKSHELF),
+                new StructureBlockReplacementEntry(Blocks.CHEST, CarpenterBlocks.SPRUCE_CHEST)
+        ));
+        put(new ResourceLocation("village_taiga"), ImmutableList.of(
+                new StructureBlockReplacementEntry(Blocks.BOOKSHELF, CarpenterBlocks.SPRUCE_BOOKSHELF),
+                new StructureBlockReplacementEntry(Blocks.CHEST, CarpenterBlocks.SPRUCE_CHEST)
+        ));
 
-        put(new ResourceLocation("mansion"), ImmutableList.of(new StructureBlockReplacementEntry(Blocks.BOOKSHELF, () -> CarpenterBlocks.DARK_OAK_BOOKSHELF.get().defaultBlockState()), new StructureBlockReplacementEntry(Blocks.CHEST, () -> CarpenterBlocks.DARK_OAK_CHEST.get().defaultBlockState())));
-        put(new ResourceLocation("bastion_remnant"), ImmutableList.of(new StructureBlockReplacementEntry(Blocks.CHEST, () -> CarpenterBlocks.CRIMSON_CHEST.get().defaultBlockState())));
+        put(new ResourceLocation("mansion"), ImmutableList.of(
+                new StructureBlockReplacementEntry(Blocks.BOOKSHELF, CarpenterBlocks.DARK_OAK_BOOKSHELF),
+                new StructureBlockReplacementEntry(Blocks.CHEST, CarpenterBlocks.DARK_OAK_CHEST)
+        ));
+        put(new ResourceLocation("bastion_remnant"), ImmutableList.of(
+                new StructureBlockReplacementEntry(Blocks.CHEST, CarpenterBlocks.CRIMSON_CHEST)
+        ));
         put(new ResourceLocation("stronghold"), ImmutableList.of(
-                new StructureBlockReplacementEntry(Blocks.OAK_PLANKS, () -> Blocks.SPRUCE_PLANKS.defaultBlockState()),
-                new StructureBlockReplacementEntry(Blocks.OAK_FENCE, () -> Blocks.SPRUCE_FENCE.defaultBlockState()),
-                new StructureBlockReplacementEntry(Blocks.OAK_TRAPDOOR, () -> Blocks.SPRUCE_TRAPDOOR.defaultBlockState()),
-                new StructureBlockReplacementEntry(Blocks.OAK_DOOR, () -> Blocks.SPRUCE_DOOR.defaultBlockState()),
-                new StructureBlockReplacementEntry(Blocks.BOOKSHELF, () -> CarpenterBlocks.SPRUCE_BOOKSHELF.get().defaultBlockState()),
-                new StructureBlockReplacementEntry(Blocks.CHEST, () -> CarpenterBlocks.SPRUCE_CHEST.get().defaultBlockState())
+                new StructureBlockReplacementEntry(Blocks.OAK_PLANKS, () -> Blocks.SPRUCE_PLANKS),
+                new StructureBlockReplacementEntry(Blocks.OAK_FENCE, () -> Blocks.SPRUCE_FENCE),
+                new StructureBlockReplacementEntry(Blocks.OAK_TRAPDOOR, () -> Blocks.SPRUCE_TRAPDOOR),
+                new StructureBlockReplacementEntry(Blocks.OAK_DOOR, () -> Blocks.SPRUCE_DOOR),
+                new StructureBlockReplacementEntry(Blocks.BOOKSHELF, CarpenterBlocks.SPRUCE_BOOKSHELF),
+                new StructureBlockReplacementEntry(Blocks.CHEST, CarpenterBlocks.SPRUCE_CHEST)
         ));
     }};
 
     public static BlockState getReplacement(ServerLevelAccessor accessor, BlockState state) {
-        Optional<ResourceLocation> res = accessor.registryAccess().registry(Registry.CONFIGURED_STRUCTURE_FEATURE_REGISTRY).map(
+        Optional<ResourceLocation> structureOptional = accessor.registryAccess().registry(Registry.CONFIGURED_STRUCTURE_FEATURE_REGISTRY).map(
                 (it) -> it.getKey(feature));
 
-        if (res.isEmpty())
+        if (structureOptional.isEmpty())
             return state;
 
-        ResourceLocation resourceLocation = res.get();
-        List<StructureBlockReplacementEntry> entries = replacementMappings.get(resourceLocation);
+        ResourceLocation structure = structureOptional.get();
+        List<StructureBlockReplacementEntry> entries = REPLACEMENTS.get(structure);
 
         if (entries == null)
             return state;
 
         for (StructureBlockReplacementEntry entry : entries) {
-            if (entry.toReplace.equals(state.getBlock())) {
-                BlockState replacementUnpropped = entry.replacement.get();
-
-                for (Property<?> property : state.getProperties()) {
-                    replacementUnpropped = replacementUnpropped.setValue((Property) property, state.getValue(property));
-                }
-
-                return replacementUnpropped;
+            if (state.is(entry.toReplace)) {
+                return entry.replacement.get().withPropertiesOf(state);
             }
         }
 
         return state;
     }
 
-    public static void pushStructure(ConfiguredStructureFeature feature, PiecesContainer pieceContainer) {
+    public static void pushStructure(ConfiguredStructureFeature<?, ?> feature, PiecesContainer pieceContainer) {
         StructureInjections.feature = feature;
         StructureInjections.pieceContainer = pieceContainer;
     }
@@ -82,6 +93,6 @@ public class StructureInjections {
         pieceContainer = null;
     }
 
-    public record StructureBlockReplacementEntry(Block toReplace, Supplier<BlockState> replacement) {}
+    public record StructureBlockReplacementEntry(Block toReplace, Supplier<Block> replacement) {}
 
 }
