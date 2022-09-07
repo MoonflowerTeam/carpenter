@@ -8,11 +8,12 @@ modId = "${id}"
 version = "${version}"
 displayName = "${name}"
 authors = "Moonflower"
-credits = "Jackson"
-description = "CHANGE ME"
+credits = "Jackson, RyanHCode"
+description = "An expansion of every carpenter's arsenal."
 displayURL = "https://www.moonflower.gg"
-#updateJSONURL = ""
-#logoFile = ""
+
+[modproperties.${id}]
+catalogueImageIcon="icon.png"
 
 [[dependencies.${id}]]
 modId = "forge"
@@ -31,6 +32,6 @@ side = "BOTH"
 [[dependencies.${id}]]
 modId = "pollen"
 mandatory = true
-versionRange = "[1.0.0,2.0.0)"
+versionRange = "[1.5.0,2.0.0)"
 ordering = "BEFORE"
 side = "BOTH"

@@ -3,9 +3,9 @@
   "id": "${id}",
   "version": "${version}",
   "name": "${name}",
-  "description": "CHANGE ME",
+  "description": "An expansion of every carpenter's arsenal.",
   "authors": [ "Moonflower" ],
-  "contributors": [ "Jackson" ],
+  "contributors": [ "Jackson", "RyanHCode" ],
   "contact": {
     "homepage": "https://www.moonflower.gg",
     "issues": "https://github.com/MoonflowerTeam/${repo}/issues",
@@ -15,6 +15,7 @@
     "${id}-common.mixins.json",
     "${id}.mixins.json"
   ],
+  "icon": "icon.png",
   "license": "GPLv3",
   "environment": "*",
   "entrypoints": {
@@ -28,6 +29,6 @@
   "depends": {
     "fabric": "*",
     "minecraft": ">=1.18.2 <1.19",
-    "pollen": ">=1.0.0 <2.0"
+    "pollen": ">=1.5.0 <2.0"
   }
 }
