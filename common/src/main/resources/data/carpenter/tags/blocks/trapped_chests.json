@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "carpenter:trapped_oak_chest",
     "carpenter:trapped_spruce_chest",
     "carpenter:trapped_birch_chest",
     "carpenter:trapped_jungle_chest",

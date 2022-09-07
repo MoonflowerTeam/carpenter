@@ -23,6 +23,7 @@ public class CarpenterBlockTagsProvider extends PollinatedBlockTagsProvider {
                 .add(CarpenterBlocks.CRIMSON_BOOKSHELF.get())
                 .add(CarpenterBlocks.WARPED_BOOKSHELF.get());
         this.tag(CarpenterBlockTags.TRAPPED_CHESTS)
+                .add(CarpenterBlocks.TRAPPED_OAK_CHEST.get())
                 .add(CarpenterBlocks.TRAPPED_SPRUCE_CHEST.get())
                 .add(CarpenterBlocks.TRAPPED_BIRCH_CHEST.get())
                 .add(CarpenterBlocks.TRAPPED_JUNGLE_CHEST.get())
@@ -31,6 +32,7 @@ public class CarpenterBlockTagsProvider extends PollinatedBlockTagsProvider {
                 .add(CarpenterBlocks.TRAPPED_CRIMSON_CHEST.get())
                 .add(CarpenterBlocks.TRAPPED_WARPED_CHEST.get());
         this.tag(CarpenterBlockTags.CHESTS)
+                .add(CarpenterBlocks.OAK_CHEST.get())
                 .add(CarpenterBlocks.SPRUCE_CHEST.get())
                 .add(CarpenterBlocks.BIRCH_CHEST.get())
                 .add(CarpenterBlocks.JUNGLE_CHEST.get())
