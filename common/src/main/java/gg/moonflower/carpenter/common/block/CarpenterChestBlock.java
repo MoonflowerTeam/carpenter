@@ -1,8 +1,8 @@
 package gg.moonflower.carpenter.common.block;
 
+import gg.moonflower.carpenter.api.v1.registry.CarpenterChestType;
 import gg.moonflower.carpenter.common.block.entity.CarpenterChestBlockEntity;
 import gg.moonflower.carpenter.core.registry.CarpenterBlocks;
-import gg.moonflower.carpenter.core.registry.CarpenterChestType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.ChestBlock;
@@ -16,13 +16,24 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
+/**
+ * @see gg.moonflower.carpenter.api.v1.registry.ChestRegistry
+ */
 public class CarpenterChestBlock extends ChestBlock {
+
     private final Supplier<CarpenterChestType> type;
 
+    public CarpenterChestBlock(Supplier<CarpenterChestType> type, Properties properties) {
+        this(type, properties, CarpenterBlocks.CARPENTER_CHEST_BE::get);
+    }
+
+    // TODO make this protected
+    @Deprecated
     public CarpenterChestBlock(Supplier<CarpenterChestType> type, Properties properties, Supplier<BlockEntityType<? extends ChestBlockEntity>> supplier) {
         super(properties, supplier);
         this.type = type;
     }
+
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new CarpenterChestBlockEntity(pos, state);
@@ -31,7 +42,7 @@ public class CarpenterChestBlock extends ChestBlock {
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        return level.isClientSide ? createTickerHelper(blockEntityType, CarpenterBlocks.CARPENTER_CHEST_BE.get(), ChestBlockEntity::lidAnimateTick) : null;
+        return level.isClientSide() ? createTickerHelper(blockEntityType, this.blockEntityType(), ChestBlockEntity::lidAnimateTick) : null;
     }
 
     @Override

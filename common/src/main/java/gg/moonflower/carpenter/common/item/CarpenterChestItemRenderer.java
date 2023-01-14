@@ -11,6 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 
 public class CarpenterChestItemRenderer implements DynamicItemRenderer {
+
     private final CarpenterChestBlockEntity chest;
 
     public CarpenterChestItemRenderer(CarpenterChestBlock chest) {
@@ -19,6 +20,6 @@ public class CarpenterChestItemRenderer implements DynamicItemRenderer {
 
     @Override
     public void render(ItemStack stack, ItemTransforms.TransformType transformType, PoseStack ms, MultiBufferSource buffer, int packedLight, int combinedOverlay) {
-        Minecraft.getInstance().getBlockEntityRenderDispatcher().renderItem(chest, ms, buffer, packedLight, combinedOverlay);
+        Minecraft.getInstance().getBlockEntityRenderDispatcher().renderItem(this.chest, ms, buffer, packedLight, combinedOverlay);
     }
 }

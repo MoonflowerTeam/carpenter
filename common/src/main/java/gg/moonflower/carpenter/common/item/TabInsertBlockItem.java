@@ -36,7 +36,8 @@ public class TabInsertBlockItem extends BlockItem {
 
     @Override
     public void fillItemCategory(CreativeModeTab category, NonNullList<ItemStack> items) {
-        if (this.allowdedIn(category))
+        if (this.allowdedIn(category)) {
             TabFiller.insert(new ItemStack(this), this.insertBefore, items, this.filter);
+        }
     }
 }

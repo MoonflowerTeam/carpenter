@@ -6,7 +6,7 @@ import com.mojang.math.Vector3f;
 import gg.moonflower.carpenter.common.block.CarpenterChestBlock;
 import gg.moonflower.carpenter.common.block.entity.CarpenterChestBlockEntity;
 import gg.moonflower.carpenter.core.mixin.ModelManagerAccessor;
-import gg.moonflower.carpenter.core.registry.CarpenterChestType;
+import gg.moonflower.carpenter.api.v1.registry.CarpenterChestType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.Sheets;
