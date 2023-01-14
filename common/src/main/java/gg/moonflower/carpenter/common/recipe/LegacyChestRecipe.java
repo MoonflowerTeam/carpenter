@@ -26,18 +26,22 @@ public class LegacyChestRecipe extends CustomRecipe {
 
             // Check if the center is empty
             if (i == 4) {
-                if (!stack.isEmpty())
+                if (!stack.isEmpty()) {
                     return false;
-                else continue;
+                } else {
+                    continue;
+                }
             }
 
             // Check if the item is planks
-            if (stack.isEmpty() || !stack.is(ItemTags.PLANKS))
+            if (stack.isEmpty() || !stack.is(ItemTags.PLANKS)) {
                 return false;
+            }
 
             // We found a mixed recipe!
-            if (!ItemStack.isSame(firstStack, stack))
+            if (!ItemStack.isSame(firstStack, stack)) {
                 mixed = true;
+            }
         }
 
         return mixed;
