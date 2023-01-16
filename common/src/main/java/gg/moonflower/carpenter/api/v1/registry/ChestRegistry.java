@@ -1,9 +1,6 @@
 package gg.moonflower.carpenter.api.v1.registry;
 
-import gg.moonflower.carpenter.core.registry.CarpenterChests;
 import gg.moonflower.carpenter.impl.registry.ChestRegistryImpl;
-import gg.moonflower.pollen.api.registry.PollinatedBlockRegistry;
-import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import net.minecraft.world.level.block.Block;
 
 import java.util.function.Supplier;
@@ -19,24 +16,17 @@ public interface ChestRegistry {
     /**
      * Creates a new chest registry and chest type registry.
      *
-     * @param blockRegistry The block registry to use
-     * @param modId         The domain to use when creating a new chest type registry
+     * @param modId The domain to use when creating registries
      * @return A new chest registry
      */
-    static ChestRegistry get(PollinatedBlockRegistry blockRegistry, String modId) {
-        return ChestRegistry.get(blockRegistry, PollinatedRegistry.create(CarpenterChests.REGISTRY, modId));
+    static ChestRegistry get(String modId) {
+        return new ChestRegistryImpl(modId);
     }
 
     /**
-     * Creates a new chest registry.
-     *
-     * @param blockRegistry     The block registry to use
-     * @param chestTypeRegistry The chest type registry to use
-     * @return A new chest registry
+     * Registers the internal chest registries. This should be called in the common init of the mod.
      */
-    static ChestRegistry get(PollinatedBlockRegistry blockRegistry, PollinatedRegistry<CarpenterChestType> chestTypeRegistry) {
-        return new ChestRegistryImpl(blockRegistry, chestTypeRegistry);
-    }
+    void register();
 
     /**
      * Registers a new chest block and chest type with the specified name.

@@ -6,8 +6,11 @@ import gg.moonflower.carpenter.common.block.CarpenterChestBlock;
 import gg.moonflower.carpenter.common.block.CarpenterTrappedChestBlock;
 import gg.moonflower.carpenter.common.item.TabInsertBlockItem;
 import gg.moonflower.carpenter.core.Carpenter;
+import gg.moonflower.carpenter.core.registry.CarpenterChests;
+import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedBlockRegistry;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -27,14 +30,33 @@ import java.util.function.Supplier;
 @ApiStatus.Internal
 public class ChestRegistryImpl implements ChestRegistry {
 
+    private final Platform platform;
+    private final PollinatedRegistry<Item> itemRegistry;
     private final PollinatedBlockRegistry blockRegistry;
     private final PollinatedRegistry<CarpenterChestType> chestTypeRegistry;
     private final Set<String> registeredTypes;
 
-    public ChestRegistryImpl(PollinatedBlockRegistry blockRegistry, PollinatedRegistry<CarpenterChestType> chestTypeRegistry) {
-        this.blockRegistry = blockRegistry;
-        this.chestTypeRegistry = chestTypeRegistry;
+    public ChestRegistryImpl(String modId) {
+        this.platform = Platform.builder(modId).build();
+        this.itemRegistry = PollinatedRegistry.create(Registry.ITEM, modId);
+        this.blockRegistry = PollinatedRegistry.createBlock(this.itemRegistry);
+        this.chestTypeRegistry = CarpenterChests.REGISTRY;
         this.registeredTypes = new HashSet<>();
+    }
+
+    public ChestRegistryImpl(Platform platform, PollinatedRegistry<Item> itemRegistry, PollinatedBlockRegistry blockRegistry) {
+        this.platform = platform;
+        this.itemRegistry = itemRegistry;
+        this.blockRegistry = blockRegistry;
+        this.chestTypeRegistry = CarpenterChests.REGISTRY;
+        this.registeredTypes = new HashSet<>();
+    }
+
+    @Override
+    public void register() {
+        this.itemRegistry.register(this.platform);
+        this.blockRegistry.register(this.platform);
+        this.chestTypeRegistry.register(this.platform);
     }
 
     @Override

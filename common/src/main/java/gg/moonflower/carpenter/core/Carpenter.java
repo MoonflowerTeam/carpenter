@@ -43,10 +43,8 @@ public class Carpenter {
     }
 
     public static void onCommonInit() {
-        CarpenterChests.REGISTRY.register(Carpenter.PLATFORM);
-        CarpenterBlocks.REGISTRY.register(Carpenter.PLATFORM);
+        CarpenterBlocks.CHEST_REGISTRY.register();
         CarpenterBlocks.BLOCK_ENTITY_REGISTRY.register(Carpenter.PLATFORM);
-        CarpenterItems.REGISTRY.register(Carpenter.PLATFORM);
         CarpenterRecipes.REGISTRY.register(Carpenter.PLATFORM);
     }
 
