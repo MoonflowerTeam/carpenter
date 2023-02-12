@@ -56,7 +56,6 @@ public class ChestRegistryImpl implements ChestRegistry {
     public void register() {
         this.itemRegistry.register(this.platform);
         this.blockRegistry.register(this.platform);
-        this.chestTypeRegistry.register(this.platform);
     }
 
     @Override

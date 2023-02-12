@@ -46,6 +46,7 @@ public class Carpenter {
         CarpenterBlocks.CHEST_REGISTRY.register();
         CarpenterBlocks.BLOCK_ENTITY_REGISTRY.register(Carpenter.PLATFORM);
         CarpenterRecipes.REGISTRY.register(Carpenter.PLATFORM);
+        CarpenterChests.REGISTRY.register(Carpenter.PLATFORM);
     }
 
     public static void onCommonPostInit(Platform.ModSetupContext ctx) {
