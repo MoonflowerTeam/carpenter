@@ -40,15 +40,15 @@ public class ChestRegistryImpl implements ChestRegistry {
         this.platform = Platform.builder(modId).build();
         this.itemRegistry = PollinatedRegistry.create(Registry.ITEM, modId);
         this.blockRegistry = PollinatedRegistry.createBlock(this.itemRegistry);
-        this.chestTypeRegistry = CarpenterChests.REGISTRY;
+        this.chestTypeRegistry = PollinatedRegistry.create(CarpenterChests.REGISTRY, modId);
         this.registeredTypes = new HashSet<>();
     }
 
-    public ChestRegistryImpl(Platform platform, PollinatedRegistry<Item> itemRegistry, PollinatedBlockRegistry blockRegistry) {
+    public ChestRegistryImpl(Platform platform, PollinatedRegistry<Item> itemRegistry, PollinatedBlockRegistry blockRegistry, PollinatedRegistry<CarpenterChestType> chestTypeRegistry) {
         this.platform = platform;
         this.itemRegistry = itemRegistry;
         this.blockRegistry = blockRegistry;
-        this.chestTypeRegistry = CarpenterChests.REGISTRY;
+        this.chestTypeRegistry = chestTypeRegistry;
         this.registeredTypes = new HashSet<>();
     }
 

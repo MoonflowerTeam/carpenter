@@ -31,7 +31,7 @@ public class CarpenterBlocks {
 
     public static final PollinatedBlockRegistry REGISTRY = PollinatedRegistry.createBlock(CarpenterItems.REGISTRY);
     public static final PollinatedRegistry<BlockEntityType<?>> BLOCK_ENTITY_REGISTRY = PollinatedRegistry.create(Registry.BLOCK_ENTITY_TYPE, Carpenter.MOD_ID);
-    public static final ChestRegistry CHEST_REGISTRY = new ChestRegistryImpl(Carpenter.PLATFORM, CarpenterItems.REGISTRY, REGISTRY);
+    public static final ChestRegistry CHEST_REGISTRY = new ChestRegistryImpl(Carpenter.PLATFORM, CarpenterItems.REGISTRY, CarpenterBlocks.REGISTRY, CarpenterChests.REGISTRY);
 
     public static final Supplier<BlockEntityType<CarpenterChestBlockEntity>> CARPENTER_CHEST_BE = BLOCK_ENTITY_REGISTRY.register("carpenter_chest", () -> createBlockEntity(CarpenterChestBlockEntity::new));
     public static final Supplier<BlockEntityType<CarpenterTrappedChestBlockEntity>> CARPENTER_TRAPPED_CHEST_BE = BLOCK_ENTITY_REGISTRY.register("carpenter_trapped_chest", () -> createBlockEntity(CarpenterTrappedChestBlockEntity::new));
