@@ -79,13 +79,13 @@ public class ChestRegistryImpl implements ChestRegistry {
     public Supplier<CarpenterChestType> registerChestType(String chestType) {
         this.registeredTypes.add(chestType);
         return this.chestTypeRegistry.register(chestType, () -> new CarpenterChestType(
-                Carpenter.carpenter("block/" + chestType + "/" + chestType + "_base"),
-                Carpenter.carpenter("block/" + chestType + "/" + chestType + "_base_left"),
-                Carpenter.carpenter("block/" + chestType + "/" + chestType + "_base_right"),
-                Carpenter.carpenter("block/" + chestType + "/" + chestType + "_lid"),
-                Carpenter.carpenter("block/" + chestType + "/" + chestType + "_lid_left"),
-                Carpenter.carpenter("block/" + chestType + "/" + chestType + "_lid_right"),
-                Carpenter.carpenter("block/" + chestType + "/" + chestType + "_knob")
+                new ResourceLocation(this.platform.getModId(), "block/" + chestType + "/" + chestType + "_base"),
+                new ResourceLocation(this.platform.getModId(), "block/" + chestType + "/" + chestType + "_base_left"),
+                new ResourceLocation(this.platform.getModId(), "block/" + chestType + "/" + chestType + "_base_right"),
+                new ResourceLocation(this.platform.getModId(), "block/" + chestType + "/" + chestType + "_lid"),
+                new ResourceLocation(this.platform.getModId(), "block/" + chestType + "/" + chestType + "_lid_left"),
+                new ResourceLocation(this.platform.getModId(), "block/" + chestType + "/" + chestType + "_lid_right"),
+                new ResourceLocation(this.platform.getModId(), "block/" + chestType + "/" + chestType + "_knob")
         ));
     }
 }
