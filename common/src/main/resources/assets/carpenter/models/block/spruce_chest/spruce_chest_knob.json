@@ -7,8 +7,8 @@
 	"elements": [
 		{
 			"name": "knob",
-			"from": [6, 6, 0.9],
-			"to": [10, 10, 0.9],
+			"from": [6, 6, 0.95],
+			"to": [10, 10, 0.95],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9, 1]},
 			"faces": {
 				"north": {"uv": [0, 0, 1, 1], "texture": "#texture"},
