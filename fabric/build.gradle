@@ -9,6 +9,12 @@ architectury {
 
 loom {
     splitEnvironmentSourceSets()
+    mods {
+        main {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
     accessWidenerPath = project(":common").loom.accessWidenerPath
 }
 
@@ -24,8 +30,11 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
     modApi "dev.architectury:architectury-fabric:${rootProject.architectury_version}"
+    modApi "gg.moonflower:pollen-fabric:${rootProject.pollen_version}"
 
     clientImplementation(project(":common").sourceSets.client.output)
+    shadowCommon(sourceSets.client.output)
+
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 }
@@ -44,6 +53,7 @@ processResources {
                 "mod_version": project.mod_version,
                 "mod_name": project.mod_name,
                 "mod_description": project.mod_description,
+                "archives_base_name": project.archives_base_name,
                 "minecraft_version": project.minecraft_version
     }
 }

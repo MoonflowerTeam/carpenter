@@ -24,7 +24,7 @@
       "gg.moonflower.carpenter.core.fabric.CarpenterFabric"
     ],
     "client": [
-      "gg.moonflower.carpenter.client.fabric.CarpenterFabricClient"
+      "gg.moonflower.carpenter.core.fabric.CarpenterFabricClient"
     ],
     "fabric-datagen": [
       "gg.moonflower.carpenter.core.fabric.CarpenterFabricData"
@@ -32,7 +32,11 @@
   },
   "mixins": [
     "${mod_id}.mixins.json",
-    "${mod_id}-common.mixins.json"
+    "${mod_id}-common.mixins.json",
+    {
+      "config": "${mod_id}-common.client.mixins.json",
+      "environment": "client"
+    }
   ],
   "depends": {
     "fabric": "*",

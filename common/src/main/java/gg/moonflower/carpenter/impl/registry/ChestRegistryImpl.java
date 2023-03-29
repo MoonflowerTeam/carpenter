@@ -7,9 +7,7 @@ import gg.moonflower.carpenter.common.block.CarpenterChestBlock;
 import gg.moonflower.carpenter.common.block.CarpenterTrappedChestBlock;
 import gg.moonflower.carpenter.common.item.TabInsertBlockItem;
 import gg.moonflower.carpenter.core.registry.CarpenterChests;
-import gg.moonflower.pollen.api.platform.Platform;
-import gg.moonflower.pollen.api.registry.PollinatedBlockRegistry;
-import gg.moonflower.pollen.api.registry.PollinatedRegistry;
+import gg.moonflower.pollen.api.registry.wrapper.v1.PollinatedBlockRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
@@ -38,7 +36,7 @@ public class ChestRegistryImpl implements ChestRegistry {
 
     public ChestRegistryImpl(String modId) {
         this.itemRegistry = DeferredRegister.create(modId, Registry.ITEM_REGISTRY);
-        this.blockRegistry = DeferredRegister.createBlock(this.itemRegistry); // TODO: pollen block wrapper registry
+        this.blockRegistry = PollinatedBlockRegistry.create(this.itemRegistry); // TODO: pollen block wrapper registry
         this.chestTypeRegistry = DeferredRegister.create(modId, CarpenterChests.REGISTRY_KEY);
         this.registeredTypes = new HashSet<>();
         this.modId = modId;
@@ -54,8 +52,8 @@ public class ChestRegistryImpl implements ChestRegistry {
 
     @Override
     public void register() {
+        this.blockRegistry.register();
         this.itemRegistry.register();
-        this.blockRegistry.register(this.platform);
         this.chestTypeRegistry.register();
     }
 

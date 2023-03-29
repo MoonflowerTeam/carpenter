@@ -1,4 +1,4 @@
-package gg.moonflower.carpenter.client.fabric;
+package gg.moonflower.carpenter.core.fabric;
 
 import gg.moonflower.carpenter.client.CarpenterClient;
 import net.fabricmc.api.ClientModInitializer;

@@ -8,6 +8,14 @@ architectury {
 }
 
 loom {
+//    mods {
+//        main {
+//            sourceSet sourceSets.main
+//            sourceSet project(":common").sourceSets.main
+//            sourceSet project(":common").sourceSets.client
+//        }
+//    }
+
     accessWidenerPath = project(":common").loom.accessWidenerPath
 
     forge {
@@ -15,6 +23,7 @@ loom {
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
 
         mixinConfig "${project.mod_id}-common.mixins.json"
+        mixinConfig "${project.mod_id}-common.client.mixins.json"
         mixinConfig "${project.mod_id}.mixins.json"
     }
 }
@@ -30,6 +39,7 @@ configurations {
 dependencies {
     forge "net.minecraftforge:forge:${rootProject.minecraft_version}-${rootProject.forge_major_version}.${rootProject.forge_minor_version}.${rootProject.forge_build_version}"
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
+    modApi "gg.moonflower:pollen-forge:${rootProject.pollen_version}"
 
     implementation(project(":common").sourceSets.client.output)
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
@@ -52,6 +62,7 @@ processResources {
                 "mod_name": project.mod_name,
                 "mod_description": project.mod_description,
                 "minecraft_version": project.minecraft_version,
+                "archives_base_name": project.archives_base_name,
                 "forge_major_version": project.forge_major_version
     }
 }

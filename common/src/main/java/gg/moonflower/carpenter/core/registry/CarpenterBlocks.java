@@ -2,6 +2,7 @@ package gg.moonflower.carpenter.core.registry;
 
 import com.google.common.base.Suppliers;
 import dev.architectury.registry.registries.DeferredRegister;
+import dev.architectury.registry.registries.RegistrySupplier;
 import gg.moonflower.carpenter.api.v1.registry.ChestRegistry;
 import gg.moonflower.carpenter.common.block.CarpenterBookshelfBlock;
 import gg.moonflower.carpenter.common.block.CarpenterChestBlock;
@@ -10,8 +11,7 @@ import gg.moonflower.carpenter.common.block.entity.CarpenterTrappedChestBlockEnt
 import gg.moonflower.carpenter.common.item.TabInsertBlockItem;
 import gg.moonflower.carpenter.core.Carpenter;
 import gg.moonflower.carpenter.impl.registry.ChestRegistryImpl;
-import gg.moonflower.pollen.api.registry.PollinatedBlockRegistry;
-import gg.moonflower.pollen.api.registry.PollinatedRegistry;
+import gg.moonflower.pollen.api.registry.wrapper.v1.PollinatedBlockRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -30,22 +30,12 @@ import java.util.stream.Collectors;
 
 public class CarpenterBlocks {
 
-    // TODO: pollen block wrapper registry
-    public static final PollinatedBlockRegistry REGISTRY = PollinatedRegistry.createBlock(CarpenterItems.REGISTRY);
+    public static final PollinatedBlockRegistry REGISTRY = PollinatedBlockRegistry.create(CarpenterItems.REGISTRY);
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_REGISTRY = DeferredRegister.create(Carpenter.MOD_ID, Registry.BLOCK_ENTITY_TYPE_REGISTRY);
     public static final ChestRegistry CHEST_REGISTRY = new ChestRegistryImpl(CarpenterItems.REGISTRY, CarpenterBlocks.REGISTRY, CarpenterChests.REGISTRY);
 
-    public static final Supplier<BlockEntityType<CarpenterChestBlockEntity>> CARPENTER_CHEST_BE = BLOCK_ENTITY_REGISTRY.register("carpenter_chest", () -> createBlockEntity(CarpenterChestBlockEntity::new));
-    public static final Supplier<BlockEntityType<CarpenterTrappedChestBlockEntity>> CARPENTER_TRAPPED_CHEST_BE = BLOCK_ENTITY_REGISTRY.register("carpenter_trapped_chest", () -> createBlockEntity(CarpenterTrappedChestBlockEntity::new));
-
-    // In reverse order for tab ordering
-    public static final Supplier<Block> WARPED_BOOKSHELF = registerBookshelf("warped");
-    public static final Supplier<Block> CRIMSON_BOOKSHELF = registerBookshelf("crimson");
-    public static final Supplier<Block> DARK_OAK_BOOKSHELF = registerBookshelf("dark_oak");
-    public static final Supplier<Block> ACACIA_BOOKSHELF = registerBookshelf("acacia");
-    public static final Supplier<Block> JUNGLE_BOOKSHELF = registerBookshelf("jungle");
-    public static final Supplier<Block> BIRCH_BOOKSHELF = registerBookshelf("birch");
-    public static final Supplier<Block> SPRUCE_BOOKSHELF = registerBookshelf("spruce");
+    public static final RegistrySupplier<BlockEntityType<CarpenterChestBlockEntity>> CARPENTER_CHEST_BE = BLOCK_ENTITY_REGISTRY.register("carpenter_chest", () -> createBlockEntity(CarpenterChestBlockEntity::new));
+    public static final RegistrySupplier<BlockEntityType<CarpenterTrappedChestBlockEntity>> CARPENTER_TRAPPED_CHEST_BE = BLOCK_ENTITY_REGISTRY.register("carpenter_trapped_chest", () -> createBlockEntity(CarpenterTrappedChestBlockEntity::new));
 
     public static final Supplier<Block> WARPED_CHEST = CHEST_REGISTRY.registerChest("warped_chest");
     public static final Supplier<Block> TRAPPED_WARPED_CHEST = CHEST_REGISTRY.registerTrappedChest("warped_chest");
@@ -64,6 +54,15 @@ public class CarpenterBlocks {
     public static final Supplier<Block> OAK_CHEST = CHEST_REGISTRY.registerChest("oak_chest");
     public static final Supplier<Block> TRAPPED_OAK_CHEST = CHEST_REGISTRY.registerTrappedChest("oak_chest");
 
+    // In reverse order for tab ordering
+    public static final RegistrySupplier<Block> WARPED_BOOKSHELF = registerBookshelf("warped");
+    public static final RegistrySupplier<Block> CRIMSON_BOOKSHELF = registerBookshelf("crimson");
+    public static final RegistrySupplier<Block> DARK_OAK_BOOKSHELF = registerBookshelf("dark_oak");
+    public static final RegistrySupplier<Block> ACACIA_BOOKSHELF = registerBookshelf("acacia");
+    public static final RegistrySupplier<Block> JUNGLE_BOOKSHELF = registerBookshelf("jungle");
+    public static final RegistrySupplier<Block> BIRCH_BOOKSHELF = registerBookshelf("birch");
+    public static final RegistrySupplier<Block> SPRUCE_BOOKSHELF = registerBookshelf("spruce");
+
     private static <T extends BlockEntity> BlockEntityType<T> createBlockEntity(BlockEntityType.BlockEntitySupplier<T> factory) {
         Supplier<Set<Block>> validBlocks = Suppliers.memoize(() -> Registry.BLOCK.stream().filter(block -> block instanceof CarpenterChestBlock).collect(Collectors.toSet()));
         return new BlockEntityType<>(factory, Collections.emptySet(), null) {
@@ -74,7 +73,13 @@ public class CarpenterBlocks {
         };
     }
 
-    private static Supplier<Block> registerBookshelf(String wood) {
+    private static RegistrySupplier<Block> registerBookshelf(String wood) {
         return REGISTRY.registerWithItem(wood + "_bookshelf", () -> new CarpenterBookshelfBlock(BlockBehaviour.Properties.copy(Blocks.BOOKSHELF)), (block) -> new TabInsertBlockItem(block, Items.BOOKSHELF, new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
     }
+
+
+
+
+
+
 }

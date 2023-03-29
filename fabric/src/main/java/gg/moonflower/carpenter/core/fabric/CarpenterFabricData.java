@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 public class CarpenterFabricData implements DataGeneratorEntrypoint {
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
-        Carpenter.PLATFORM.dataSetup(fabricDataGenerator);
+        // TODO: pollen data gen api
+//        Carpenter.PLATFORM.dataSetup(fabricDataGenerator);
     }
 }

@@ -1,9 +1,6 @@
 package gg.moonflower.carpenter.common.item;
 
-import gg.moonflower.pollen.api.item.TabFiller;
-import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -33,11 +30,11 @@ public class TabInsertBlockItem extends BlockItem {
         this.filter = filter;
         this.insertBefore = insertBefore;
     }
-
-    @Override
-    public void fillItemCategory(CreativeModeTab category, NonNullList<ItemStack> items) {
-        if (this.allowdedIn(category)) {
-            TabFiller.insert(new ItemStack(this), this.insertBefore, items, this.filter);
-        }
-    }
+//
+//    @Override
+//    public void fillItemCategory(CreativeModeTab category, NonNullList<ItemStack> items) {
+//        if (this.allowdedIn(category)) {
+//            TabFiller.insert(new ItemStack(this), this.insertBefore, items, this.filter);
+//        }
+//    }
 }

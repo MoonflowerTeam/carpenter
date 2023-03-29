@@ -1,8 +1,8 @@
 package gg.moonflower.carpenter.core.mixin.fabric;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import gg.moonflower.carpenter.core.registry.CarpenterBlockTags;
-import gg.moonflower.pollen.mixinextras.injector.wrapoperation.Operation;
-import gg.moonflower.pollen.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EnchantmentTableBlock;
 import net.minecraft.world.level.block.state.BlockState;

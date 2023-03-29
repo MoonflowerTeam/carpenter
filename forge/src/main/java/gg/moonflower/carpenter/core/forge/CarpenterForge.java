@@ -1,5 +1,6 @@
 package gg.moonflower.carpenter.core.forge;
 
+import dev.architectury.platform.forge.EventBuses;
 import gg.moonflower.carpenter.client.CarpenterClient;
 import gg.moonflower.carpenter.core.Carpenter;
 import net.minecraftforge.api.distmarker.Dist;
@@ -14,15 +15,16 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class CarpenterForge {
     public CarpenterForge() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        EventBuses.registerModEventBus(Carpenter.MOD_ID, eventBus);
         eventBus.addListener(this::commonInit);
         eventBus.addListener(this::clientInit);
 
-        Carpenter.onCommonInit();
+        Carpenter.init();
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> CarpenterClient::init);
     }
 
     private void commonInit(FMLCommonSetupEvent event) {
-        Carpenter.onCommonInit();
+        Carpenter.postInit();
     }
 
     private void clientInit(FMLClientSetupEvent event) {

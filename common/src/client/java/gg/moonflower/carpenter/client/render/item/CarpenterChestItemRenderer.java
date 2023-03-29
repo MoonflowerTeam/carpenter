@@ -1,9 +1,9 @@
-package gg.moonflower.carpenter.common.item;
+package gg.moonflower.carpenter.client.render.item;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import gg.moonflower.carpenter.common.block.CarpenterChestBlock;
 import gg.moonflower.carpenter.common.block.entity.CarpenterChestBlockEntity;
-import gg.moonflower.pollen.api.client.render.DynamicItemRenderer;
+import gg.moonflower.pollen.api.render.item.v1.DynamicItemRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
