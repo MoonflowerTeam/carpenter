@@ -8,7 +8,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.ConfiguredStructureFeature;
+import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.pieces.PiecesContainer;
 
 import java.util.HashMap;
@@ -18,9 +18,6 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 public class StructureInjections {
-
-    private static ConfiguredStructureFeature<?, ?> feature;
-    private static PiecesContainer pieceContainer;
 
     // TODO: These need to be configurable with a datapack reload listener. It's possible for mods to just add to this hashmap normally for compat, but it should be easier
     public static final Map<ResourceLocation, List<StructureBlockReplacementEntry>> REPLACEMENTS = new HashMap<>() {{
@@ -60,10 +57,12 @@ public class StructureInjections {
                 new StructureBlockReplacementEntry(Blocks.CHEST, CarpenterBlocks.SPRUCE_CHEST)
         ));
     }};
+    private static Structure structure;
+    private static PiecesContainer pieceContainer;
 
     public static BlockState getReplacement(ServerLevelAccessor accessor, BlockState state) {
-        Optional<ResourceLocation> structureOptional = accessor.registryAccess().registry(Registry.CONFIGURED_STRUCTURE_FEATURE_REGISTRY).map(
-                (it) -> it.getKey(feature));
+        Optional<ResourceLocation> structureOptional = accessor.registryAccess().registry(Registry.STRUCTURE_REGISTRY).map(
+                (it) -> it.getKey(structure));
 
         if (structureOptional.isEmpty())
             return state;
@@ -83,16 +82,17 @@ public class StructureInjections {
         return state;
     }
 
-    public static void pushStructure(ConfiguredStructureFeature<?, ?> feature, PiecesContainer pieceContainer) {
-        StructureInjections.feature = feature;
+    public static void pushStructure(Structure structure, PiecesContainer pieceContainer) {
+        StructureInjections.structure = structure;
         StructureInjections.pieceContainer = pieceContainer;
     }
 
     public static void popStructure() {
-        feature = null;
+        structure = null;
         pieceContainer = null;
     }
 
-    public record StructureBlockReplacementEntry(Block toReplace, Supplier<Block> replacement) {}
+    public record StructureBlockReplacementEntry(Block toReplace, Supplier<Block> replacement) {
+    }
 
 }

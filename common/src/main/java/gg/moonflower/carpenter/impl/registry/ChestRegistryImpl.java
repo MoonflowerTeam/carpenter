@@ -1,11 +1,11 @@
 package gg.moonflower.carpenter.impl.registry;
 
+import dev.architectury.registry.registries.DeferredRegister;
 import gg.moonflower.carpenter.api.v1.registry.CarpenterChestType;
 import gg.moonflower.carpenter.api.v1.registry.ChestRegistry;
 import gg.moonflower.carpenter.common.block.CarpenterChestBlock;
 import gg.moonflower.carpenter.common.block.CarpenterTrappedChestBlock;
 import gg.moonflower.carpenter.common.item.TabInsertBlockItem;
-import gg.moonflower.carpenter.core.Carpenter;
 import gg.moonflower.carpenter.core.registry.CarpenterChests;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedBlockRegistry;
@@ -30,33 +30,33 @@ import java.util.function.Supplier;
 @ApiStatus.Internal
 public class ChestRegistryImpl implements ChestRegistry {
 
-    private final Platform platform;
-    private final PollinatedRegistry<Item> itemRegistry;
+    private final DeferredRegister<Item> itemRegistry;
     private final PollinatedBlockRegistry blockRegistry;
-    private final PollinatedRegistry<CarpenterChestType> chestTypeRegistry;
+    private final DeferredRegister<CarpenterChestType> chestTypeRegistry;
     private final Set<String> registeredTypes;
+    private final String modId;
 
     public ChestRegistryImpl(String modId) {
-        this.platform = Platform.builder(modId).build();
-        this.itemRegistry = PollinatedRegistry.create(Registry.ITEM, modId);
-        this.blockRegistry = PollinatedRegistry.createBlock(this.itemRegistry);
-        this.chestTypeRegistry = PollinatedRegistry.create(CarpenterChests.REGISTRY, modId);
+        this.itemRegistry = DeferredRegister.create(modId, Registry.ITEM_REGISTRY);
+        this.blockRegistry = DeferredRegister.createBlock(this.itemRegistry); // TODO: pollen block wrapper registry
+        this.chestTypeRegistry = DeferredRegister.create(modId, CarpenterChests.REGISTRY_KEY);
         this.registeredTypes = new HashSet<>();
+        this.modId = modId;
     }
 
-    public ChestRegistryImpl(Platform platform, PollinatedRegistry<Item> itemRegistry, PollinatedBlockRegistry blockRegistry, PollinatedRegistry<CarpenterChestType> chestTypeRegistry) {
-        this.platform = platform;
+    public ChestRegistryImpl(DeferredRegister<Item> itemRegistry, PollinatedBlockRegistry blockRegistry, DeferredRegister<CarpenterChestType> chestTypeRegistry) {
         this.itemRegistry = itemRegistry;
         this.blockRegistry = blockRegistry;
         this.chestTypeRegistry = chestTypeRegistry;
         this.registeredTypes = new HashSet<>();
+        this.modId = this.chestTypeRegistry.getRegistries().getModId();
     }
 
     @Override
     public void register() {
-        this.itemRegistry.register(this.platform);
+        this.itemRegistry.register();
         this.blockRegistry.register(this.platform);
-        this.chestTypeRegistry.register(this.platform);
+        this.chestTypeRegistry.register();
     }
 
     @Override
@@ -71,21 +71,21 @@ public class ChestRegistryImpl implements ChestRegistry {
 
     @Override
     public Supplier<CarpenterChestType> getOrRegisterChestType(String chestType) {
-        ResourceLocation id = new ResourceLocation(this.chestTypeRegistry.getModId(), chestType);
-        return this.registeredTypes.contains(chestType) ? () -> this.chestTypeRegistry.get(id) : this.registerChestType(chestType);
+        ResourceLocation id = new ResourceLocation(this.modId, chestType);
+        return this.registeredTypes.contains(chestType) ? () -> this.chestTypeRegistry.getRegistrar().get(id) : this.registerChestType(chestType);
     }
 
     @Override
     public Supplier<CarpenterChestType> registerChestType(String chestType) {
         this.registeredTypes.add(chestType);
         return this.chestTypeRegistry.register(chestType, () -> new CarpenterChestType(
-                new ResourceLocation(this.platform.getModId(), "block/" + chestType + "/" + chestType + "_base"),
-                new ResourceLocation(this.platform.getModId(), "block/" + chestType + "/" + chestType + "_base_left"),
-                new ResourceLocation(this.platform.getModId(), "block/" + chestType + "/" + chestType + "_base_right"),
-                new ResourceLocation(this.platform.getModId(), "block/" + chestType + "/" + chestType + "_lid"),
-                new ResourceLocation(this.platform.getModId(), "block/" + chestType + "/" + chestType + "_lid_left"),
-                new ResourceLocation(this.platform.getModId(), "block/" + chestType + "/" + chestType + "_lid_right"),
-                new ResourceLocation(this.platform.getModId(), "block/" + chestType + "/" + chestType + "_knob")
+                new ResourceLocation(this.modId, "block/" + chestType + "/" + chestType + "_base"),
+                new ResourceLocation(this.modId, "block/" + chestType + "/" + chestType + "_base_left"),
+                new ResourceLocation(this.modId, "block/" + chestType + "/" + chestType + "_base_right"),
+                new ResourceLocation(this.modId, "block/" + chestType + "/" + chestType + "_lid"),
+                new ResourceLocation(this.modId, "block/" + chestType + "/" + chestType + "_lid_left"),
+                new ResourceLocation(this.modId, "block/" + chestType + "/" + chestType + "_lid_right"),
+                new ResourceLocation(this.modId, "block/" + chestType + "/" + chestType + "_knob")
         ));
     }
 }

@@ -1,4 +1,4 @@
-package gg.moonflower.carpenter.core.mixin;
+package gg.moonflower.carpenter.client.mixin;
 
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelManager;

@@ -27,9 +27,7 @@ public class CarpenterChestBlock extends ChestBlock {
         this(type, properties, CarpenterBlocks.CARPENTER_CHEST_BE::get);
     }
 
-    // TODO make this protected
-    @Deprecated
-    public CarpenterChestBlock(Supplier<CarpenterChestType> type, Properties properties, Supplier<BlockEntityType<? extends ChestBlockEntity>> supplier) {
+    protected CarpenterChestBlock(Supplier<CarpenterChestType> type, Properties properties, Supplier<BlockEntityType<? extends ChestBlockEntity>> supplier) {
         super(properties, supplier);
         this.type = type;
     }

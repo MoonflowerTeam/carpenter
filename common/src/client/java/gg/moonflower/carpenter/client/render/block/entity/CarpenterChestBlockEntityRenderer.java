@@ -5,7 +5,7 @@ import com.mojang.math.Constants;
 import com.mojang.math.Vector3f;
 import gg.moonflower.carpenter.common.block.CarpenterChestBlock;
 import gg.moonflower.carpenter.common.block.entity.CarpenterChestBlockEntity;
-import gg.moonflower.carpenter.core.mixin.ModelManagerAccessor;
+import gg.moonflower.carpenter.client.mixin.ModelManagerAccessor;
 import gg.moonflower.carpenter.api.v1.registry.CarpenterChestType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -43,8 +43,7 @@ public class CarpenterChestBlockEntityRenderer<T extends CarpenterChestBlockEnti
         BlockState blockState = bl ? blockEntity.getBlockState() : blockEntity.getBlockState().setValue(ChestBlock.FACING, Direction.SOUTH);
         final Block block = blockState.getBlock();
 
-        if(!(block instanceof CarpenterChestBlock)) return;
-        final CarpenterChestBlock chest = (CarpenterChestBlock) block;
+        if(!(block instanceof final CarpenterChestBlock chest)) return;
 
         final CarpenterChestType chestType = chest.getType().get();
 

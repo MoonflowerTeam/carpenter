@@ -9,7 +9,7 @@
     "StructureTemplateMixin"
   ],
   "client": [
-    "ModelManagerAccessor"
+    "gg.moonflower.carpenter.client.mixin.ModelManagerAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

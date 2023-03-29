@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 
+// TODO: pollen item renderer api
 public class CarpenterChestItemRenderer implements DynamicItemRenderer {
 
     private final CarpenterChestBlockEntity chest;
