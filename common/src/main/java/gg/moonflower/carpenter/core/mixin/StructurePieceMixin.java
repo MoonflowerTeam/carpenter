@@ -3,6 +3,7 @@ package gg.moonflower.carpenter.core.mixin;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import gg.moonflower.carpenter.common.worldgen.StructureInjections;
+import gg.moonflower.carpenter.core.Carpenter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.WorldGenLevel;
@@ -19,8 +20,8 @@ public abstract class StructurePieceMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/WorldGenLevel;setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z")
     )
     private boolean replaceBlock(WorldGenLevel instance, BlockPos blockPos, BlockState blockState, int i, Operation<Boolean> original) {
-//        if (Carpenter.CONFIG.enableStructureReplacements.get())
-        blockState = StructureInjections.getReplacement(instance, blockState);
+        if (Carpenter.CONFIG.enableStructureReplacements.get())
+            blockState = StructureInjections.getReplacement(instance, blockState);
         return original.call(instance, blockPos, blockState, i);
     }
 
@@ -29,8 +30,8 @@ public abstract class StructurePieceMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/ServerLevelAccessor;setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z")
     )
     private boolean replaceChest(ServerLevelAccessor instance, BlockPos blockPos, BlockState blockState, int i, Operation<Boolean> original) {
-//        if (Carpenter.CONFIG.enableStructureReplacements.get())
-        blockState = StructureInjections.getReplacement(instance, blockState);
+        if (Carpenter.CONFIG.enableStructureReplacements.get())
+            blockState = StructureInjections.getReplacement(instance, blockState);
         return original.call(instance, blockPos, blockState, i);
     }
 }

@@ -3,13 +3,14 @@ package gg.moonflower.carpenter.core;
 import dev.architectury.registry.fuel.FuelRegistry;
 import gg.moonflower.carpenter.core.registry.CarpenterBlocks;
 import gg.moonflower.carpenter.core.registry.CarpenterRecipes;
+import gg.moonflower.pollen.api.config.v1.ConfigManager;
+import gg.moonflower.pollen.api.config.v1.PollinatedConfigType;
 import net.minecraft.resources.ResourceLocation;
 
 public class Carpenter {
     public static final String MOD_ID = "carpenter";
 
-    // TODO: pollen config
-//    public static final CarpenterConfig CONFIG = ConfigManager.register(Carpenter.MOD_ID, PollinatedConfigType.COMMON, CarpenterConfig::new);
+    public static final CarpenterConfig CONFIG = ConfigManager.register(Carpenter.MOD_ID, PollinatedConfigType.SERVER, CarpenterConfig::new);
 
     public static ResourceLocation carpenter(String path) {
         return new ResourceLocation(Carpenter.MOD_ID, path);
