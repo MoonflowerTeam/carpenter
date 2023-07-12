@@ -1,4 +1,4 @@
-package gg.moonflower.carpenter.client;
+package gg.moonflower.carpenter.core;
 
 import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
 import gg.moonflower.carpenter.api.v1.registry.CarpenterChestType;

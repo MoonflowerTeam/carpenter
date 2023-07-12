@@ -1,7 +1,7 @@
 package gg.moonflower.carpenter.core.forge;
 
 import dev.architectury.platform.forge.EventBuses;
-import gg.moonflower.carpenter.client.CarpenterClient;
+import gg.moonflower.carpenter.core.CarpenterClient;
 import gg.moonflower.carpenter.core.Carpenter;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
