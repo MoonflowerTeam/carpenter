@@ -8,6 +8,9 @@
     "StructureStartMixin",
     "StructureTemplateMixin"
   ],
+  "client": [
+    "client.ModelManagerAccessor"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

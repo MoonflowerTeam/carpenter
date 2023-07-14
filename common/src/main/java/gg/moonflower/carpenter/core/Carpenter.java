@@ -5,6 +5,7 @@ import gg.moonflower.carpenter.core.registry.CarpenterBlocks;
 import gg.moonflower.carpenter.core.registry.CarpenterRecipes;
 import gg.moonflower.pollen.api.config.v1.ConfigManager;
 import gg.moonflower.pollen.api.config.v1.PollinatedConfigType;
+import gg.moonflower.pollen.api.registry.content.v1.FlammabilityRegistry;
 import net.minecraft.resources.ResourceLocation;
 
 public class Carpenter {
@@ -41,12 +42,11 @@ public class Carpenter {
                 CarpenterBlocks.ACACIA_BOOKSHELF.get(),
                 CarpenterBlocks.DARK_OAK_BOOKSHELF.get());
 
-        // TODO: pollen flammability
-//        FlammabilityRegistry.register(CarpenterBlocks.SPRUCE_BOOKSHELF.get(), 30, 20);
-//        FlammabilityRegistry.register(CarpenterBlocks.BIRCH_BOOKSHELF.get(), 30, 20);
-//        FlammabilityRegistry.register(CarpenterBlocks.JUNGLE_BOOKSHELF.get(), 30, 20);
-//        FlammabilityRegistry.register(CarpenterBlocks.ACACIA_BOOKSHELF.get(), 30, 20);
-//        FlammabilityRegistry.register(CarpenterBlocks.DARK_OAK_BOOKSHELF.get(), 30, 20);
+        FlammabilityRegistry.register(CarpenterBlocks.SPRUCE_BOOKSHELF.get(), 30, 20);
+        FlammabilityRegistry.register(CarpenterBlocks.BIRCH_BOOKSHELF.get(), 30, 20);
+        FlammabilityRegistry.register(CarpenterBlocks.JUNGLE_BOOKSHELF.get(), 30, 20);
+        FlammabilityRegistry.register(CarpenterBlocks.ACACIA_BOOKSHELF.get(), 30, 20);
+        FlammabilityRegistry.register(CarpenterBlocks.DARK_OAK_BOOKSHELF.get(), 30, 20);
     }
 
     // TODO: pollen data generation

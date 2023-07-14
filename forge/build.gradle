@@ -2,6 +2,8 @@ plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
+archivesBaseName = "${rootProject.archivesBaseName}-${project.name}"
+
 architectury {
     platformSetupLoomIde()
     forge()
@@ -15,7 +17,6 @@ loom {
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
 
         mixinConfig "${project.mod_id}-common.mixins.json"
-        mixinConfig "${project.mod_id}-common.client.mixins.json"
         mixinConfig "${project.mod_id}.mixins.json"
     }
 }
