@@ -11,21 +11,26 @@ import gg.moonflower.pollen.api.registry.render.v1.ItemRendererRegistry;
 import gg.moonflower.pollen.api.registry.render.v1.ModelRegistry;
 import net.minecraft.core.Registry;
 
+import java.util.function.Supplier;
+
 public class CarpenterClient {
+
     public static void init() {
+        ModelRegistry.registerFactory((resourceManager, consumer) -> {
+            for (Supplier<CarpenterChestType> supplier : CarpenterChests.REGISTRY) {
+                CarpenterChestType chestType = supplier.get();
+                consumer.accept(chestType.body());
+                consumer.accept(chestType.leftBody());
+                consumer.accept(chestType.rightBody());
+                consumer.accept(chestType.lid());
+                consumer.accept(chestType.leftLid());
+                consumer.accept(chestType.rightLid());
+                consumer.accept(chestType.knob());
+            }
+        });
     }
 
     public static void postInit() {
-        CarpenterChests.REGISTRY.iterator().forEachRemaining((supplier) -> {
-            CarpenterChestType chestType = supplier.get();
-            ModelRegistry.registerSpecial(chestType.body());
-            ModelRegistry.registerSpecial(chestType.leftBody());
-            ModelRegistry.registerSpecial(chestType.rightBody());
-            ModelRegistry.registerSpecial(chestType.lid());
-            ModelRegistry.registerSpecial(chestType.leftLid());
-            ModelRegistry.registerSpecial(chestType.rightLid());
-            ModelRegistry.registerSpecial(chestType.knob());
-        });
         BlockEntityRendererRegistry.register(CarpenterBlocks.CARPENTER_CHEST_BE.get(), CarpenterChestBlockEntityRenderer::new);
         BlockEntityRendererRegistry.register(CarpenterBlocks.CARPENTER_TRAPPED_CHEST_BE.get(), CarpenterChestBlockEntityRenderer::new);
         Registry.BLOCK.stream().filter((x) -> x instanceof CarpenterChestBlock).forEach(chest -> ItemRendererRegistry.registerRenderer(chest.asItem(), new CarpenterChestItemRenderer((CarpenterChestBlock) chest)));
